@@ -24,4 +24,4 @@ depicted in the story, which inspired me to create a project with a Harry Potter
 - As a user, I want to be able to select a beast in the list and modify or add new details to that beast
 
 
-An example of text with **bold** and *italic* fonts.  
+[comment]:<> (An example of text with **bold** and *italic* fonts.)
