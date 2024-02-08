@@ -13,14 +13,14 @@ public class MagicalBeastList {
 
     //MODIFIES: this
     //EFFECTS: add a magical beast to the beast list
-    public void addMagicalBeast(MagicalBeast id) {
-        this.beastList.add(id);
+    public void addMagicalBeast(MagicalBeast beast) {
+        this.beastList.add(beast);
     }
 
     //MODIFIES: this
     //EFFECTS: remove a magical beast in the beast list
-    public void removeMagicalBeast(MagicalBeast id) {
-        this.beastList.remove(id);
+    public void removeMagicalBeast(MagicalBeast beast) {
+        this.beastList.remove(beast);
     }
 
     public List<MagicalBeast> getAllMagicalBeasts() {
