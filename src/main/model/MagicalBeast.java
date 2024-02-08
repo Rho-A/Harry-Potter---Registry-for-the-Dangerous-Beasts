@@ -97,6 +97,16 @@ public class MagicalBeast {
         return this.species;
     }
 
+    //EFFECTS: return species warning
+    public String getSpeciesSpecificWarning() {
+        return this.speciesSpecificWarning;
+    }
+
+    //EFFECTS: return species classification
+    public int getClassification() {
+        return this.classification;
+    }
+
     //EFFECTS: return owner's name
     public String getOwnerName() {
         return this.ownerName;
