@@ -3,8 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MagicalBeastTest {
     private MagicalBeast flobberworm;
@@ -28,7 +27,7 @@ class MagicalBeastTest {
     void testConstructor() {
         assertEquals("Flobby", flobberworm.getBeastName());
         assertEquals("Male", flobberworm.getGender());
-        assertEquals("Flobberworm", flobberworm.getSpecies().getSpeciesName());
+        assertEquals("Flobberworm", flobberworm.getSpeciesName());
         assertEquals("Winsor", flobberworm.getOwnerName());
     }
 
@@ -78,6 +77,25 @@ class MagicalBeastTest {
         assertEquals(ghoul, flobberworm.getOffsprings().get(0));
         assertEquals(kneazle, flobberworm.getOffsprings().get(1));
         assertEquals(quintaped, flobberworm.getOffsprings().get(2));
+    }
+
+    @Test
+    void testGetSpeciesName() {
+        assertEquals("Kneazle", kneazle.getSpeciesName());
+        assertEquals("Ghoul", ghoul.getSpeciesName());
+    }
+
+    @Test
+    void testGetSpeciesSpecificWarning() {
+        assertNull(ghoul.getSpeciesSpecificWarning());
+        assertEquals("Carnivorous, taste for human flesh[2]" + "\n" + "Extremely dangerous and hostile towards humans",
+                quintaped.getSpeciesSpecificWarning());
+    }
+
+    @Test
+    void testGetClassification() {
+        assertEquals(2, ghoul.getClassification());
+        assertEquals(5, quintaped.getClassification());
     }
 
     @Test

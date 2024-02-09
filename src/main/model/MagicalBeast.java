@@ -8,13 +8,14 @@ import java.util.List;
 //      classification, owner's name, familial relation, extra notes (free text)
 public class MagicalBeast {
     private static int nextUniqueId = 1; //unique id of next beast
-    private int uniqueId; //unique id of the beast
+    private final int uniqueId; //unique id of the beast
     private String beastName; //beast's name
-    private String gender; //beast's gender
+    private final String gender; //beast's gender
 
-    private Species species; //beast's species
-    private String speciesSpecificWarning; //warning specific to the species
-    private int classification; //beast's classification, from 1 to 5
+    private final Species species; //beast's species
+    private final String speciesName;
+    private final String speciesSpecificWarning; //warning specific to the species
+    private final int classification; //beast's classification, from 1 to 5
 
     private String ownerName; //name of the beast's owner
 
@@ -32,6 +33,7 @@ public class MagicalBeast {
         this.beastName = beastName;
         this.gender = gender;
         this.species = new Species(species);
+        this.speciesName = species;
         this.speciesSpecificWarning = this.species.getWarning();
         this.classification = this.species.getClassification();
         this.ownerName = ownerName;
@@ -93,8 +95,13 @@ public class MagicalBeast {
     }
 
     //EFFECTS: return beast species
-    public Species getSpecies() {
-        return this.species;
+   // public Species getSpecies() {
+  //      return this.species;
+  //  }
+
+    //EFFECTS: return beast species' name
+    public String getSpeciesName() {
+        return this.speciesName;
     }
 
     //EFFECTS: return species warning

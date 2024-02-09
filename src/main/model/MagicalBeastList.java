@@ -1,5 +1,6 @@
 package model;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,24 +24,30 @@ public class MagicalBeastList {
         this.beastList.remove(beast);
     }
 
+    //EFFECTS: return true if the beastList is empty, otherwise false
+    public boolean isEmpty() {
+        return this.beastList.isEmpty();
+    }
+
+    //EFFECTS: return the full list of beastList
     public List<MagicalBeast> getAllMagicalBeasts() {
         return this.beastList;
     }
 
     //EFFECTS: return a list of magical beasts of the specific species
-    public List<MagicalBeast> getMagicalBeastsOfSpecies(Species species) {
+    public List<MagicalBeast> getFilteredMagicalBeastsBySpecies(String species) {
         List<MagicalBeast> specificSpecies = new ArrayList<>();
 
-        for (MagicalBeast magicalBeast : this.beastList) {
-            if (species.equals(magicalBeast.getSpecies())) {
-                specificSpecies.add(magicalBeast);
+        for (MagicalBeast b : this.beastList) {
+            if (species.equals(b.getSpeciesName())) {
+                specificSpecies.add(b);
             }
         }
         return specificSpecies;
     }
 
     //EFFECTS: return a list of magical beasts of the owner's
-    public List<MagicalBeast> getMagicalBeastsOfOwner(String ownerName) {
+    public List<MagicalBeast> getFilteredMagicalBeastsByOwner(String ownerName) {
         List<MagicalBeast> specificOwner = new ArrayList<>();
 
         for (MagicalBeast magicalBeast : this.beastList) {
