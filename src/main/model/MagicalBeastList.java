@@ -34,6 +34,21 @@ public class MagicalBeastList {
         return this.beastList;
     }
 
+    //EFFECTS: return the full list of beast name
+    public List<String> getAllMagicalBeastNames() {
+        List<String> fullListName = new ArrayList<>();
+
+        for (MagicalBeast b : this.beastList) {
+            fullListName.add(b.getBeastName());
+        }
+        return fullListName;
+    }
+
+    //EFFECTS: return the magical beast at index position
+    public MagicalBeast getMagicalBeast(int index) {
+        return this.beastList.get(index);
+    }
+
     //EFFECTS: return a list of magical beasts of the specific species
     public List<MagicalBeast> getFilteredMagicalBeastsBySpecies(String species) {
         List<MagicalBeast> specificSpecies = new ArrayList<>();
@@ -56,5 +71,31 @@ public class MagicalBeastList {
             }
         }
         return specificOwner;
+    }
+
+
+
+    //EFFECTS: return a list of magical beasts name of the specific beast name
+    public ArrayList<String> getFilteredMagicalBeastsByName(String name) {
+        ArrayList<String> specificName = new ArrayList<>();
+
+        for (MagicalBeast b : this.beastList) {
+            if (name.equals(b.getBeastName())) {
+                specificName.add(b.getBeastName());
+            }
+        }
+        return specificName;
+    }
+
+    //EFFECTS: return a list of magical beasts name of the specific beast name
+    public ArrayList<MagicalBeast> getFilteredMagicalBeastsByBeast(String name) {
+        ArrayList<MagicalBeast> specificName = new ArrayList<>();
+
+        for (MagicalBeast b : this.beastList) {
+            if (name.equals(b.getBeastName())) {
+                specificName.add(b);
+            }
+        }
+        return specificName;
     }
 }

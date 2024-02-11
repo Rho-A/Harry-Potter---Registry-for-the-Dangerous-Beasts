@@ -114,6 +114,16 @@ public class MagicalBeast {
         return this.classification;
     }
 
+    //EFFECTS: return species classification in X format
+    public String getClassificationInX() {
+        String classification = "";
+
+        for (int i = 0; i < this.classification; i++) {
+            classification = classification + "X";
+        }
+        return classification;
+    }
+
     //EFFECTS: return owner's name
     public String getOwnerName() {
         return this.ownerName;
