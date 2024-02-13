@@ -200,7 +200,7 @@ public class RegistryApp {
             System.out.println("What would you like to modify?");
             System.out.println("\tb -> change beast name");
             System.out.println("\to -> change owner name");
-            //System.out.println("\tp -> add parents");
+            //System.out.println("\tp -> add parents");//
             //System.out.println("\ts -> add siblings");
             //System.out.println("\tg -> add offsprings");
             //System.out.println("\te -> add extra notes");
