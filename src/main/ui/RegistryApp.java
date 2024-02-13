@@ -3,7 +3,6 @@ package ui;
 import model.MagicalBeast;
 import model.MagicalBeastList;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +25,7 @@ public class RegistryApp {
         runRegistry();
     }
 
+    //EFFECTS: create a running registry app, the app terminates when 'q' is entered
     private void runRegistry() {
         boolean keepGoing = true;
         String userCommand = null;
@@ -44,6 +44,7 @@ public class RegistryApp {
         System.out.println("Have a wonderful day! Goodbye.");
     }
 
+    //EFFECTS: display the main menu of the app
     private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\ta -> add Beast");
@@ -53,6 +54,7 @@ public class RegistryApp {
         System.out.println("\tq -> quit");
     }
 
+    //EFFECTS: direct user to specific function/method based on user command
     private void processUserCommand(String userCommand) {
         if (userCommand.equals("a")) {
             doAddBeast();
@@ -67,27 +69,12 @@ public class RegistryApp {
         }
     }
 
+    //EFFECTS: add new magical beast to the current registry
     private void doAddBeast() {
         System.out.println("What is the Beast's name?");
         String beastName = userInput.next();
-        System.out.println("What is the Beast's gender?");
-        String beastGender = userInput.next();
-
-        boolean keepGoing = true;
-        String beastSpecies = "";
-
-        while (keepGoing) {
-            System.out.println("What is the Beast's species? Choose one of the following:"
-                    + speciesList);
-            beastSpecies = userInput.next();
-
-            if (correctSpecies(beastSpecies)) {
-                keepGoing = false;
-            } else {
-                System.out.println("Species entered does not exist, please enter again.");
-            }
-
-        }
+        String beastGender = askBeastGender();
+        String beastSpecies = askBeastSpecies();
 
         System.out.println("What is the owner's name?");
         String beastOwner = userInput.next();
@@ -97,7 +84,42 @@ public class RegistryApp {
         System.out.println(beastName + " has been successfully added.");
     }
 
-    private boolean correctSpecies(String species) {
+    //EFFECTS: ask for beast's gender
+    private String askBeastGender() {
+        boolean keepGoingGender = true;
+        String beastGender = "";
+        while (keepGoingGender) {
+            System.out.println("What is the Beast's gender? Choose one of the following: Male, Female, Unknown.");
+            beastGender = userInput.next();
+
+            if (beastGender.equals("Male") || beastGender.equals("Female") || beastGender.equals("Unknown")) {
+                keepGoingGender = false;
+            }
+        }
+        return beastGender;
+    }
+
+    //EFFECTS: ask for beast's species
+    private String askBeastSpecies() {
+        boolean keepGoing = true;
+        String beastSpecies = "";
+
+        while (keepGoing) {
+            System.out.println("What is the Beast's species? Choose one of the following:"
+                    + speciesList);
+            beastSpecies = userInput.next();
+
+            if (checkCorrectSpecies(beastSpecies)) {
+                keepGoing = false;
+            } else {
+                System.out.println("Species entered does not exist, please enter again.");
+            }
+        }
+        return beastSpecies;
+    }
+
+    //EFFECTS: return true when the input species is in the species list
+    private boolean checkCorrectSpecies(String species) {
         for (String name : speciesList) {
             if (species.equals(name)) {
                 return true;
@@ -106,14 +128,19 @@ public class RegistryApp {
         return false;
     }
 
+    //REQUIRES: beastGender must be one of: Male, Female or Unknown
+    //          beastSpecies must be one of the species in speciesList
+    //EFFECTS: create a new magical beast with defined name, gender, species, owner
     private MagicalBeast createBeast(String beastName, String beastGender, String beastSpecies, String beastOwner) {
         return new MagicalBeast(beastName, beastGender, beastSpecies, beastOwner);
     }
 
+    //EFFECTS: add a magical beast into the registry
     private void addToRegistry(MagicalBeast beast) {
         fullRegistry.addMagicalBeast(beast);
     }
 
+    //EFFECTS: remove a beast from the registry
     private void doRemoveBeast() {
         String beastName = chooseBeast("remove");
 
@@ -134,11 +161,13 @@ public class RegistryApp {
         }
     }
 
+    //EFFECTS: return the name of the beast that user wishes to remove
     private String chooseBeast(String action) {
         System.out.println("What is the name of the beast you wish to " + action + "?");
         return userInput.next();
     }
 
+    //EFFECTS: return the index of the targeted beast in the filtered list
     private int positionBeast(ArrayList<String> filteredList, String action) {
         System.out.println("Which of the following would you like to " + action + "?"
                 + " Select by entering the position (starting from 0).");
@@ -146,6 +175,7 @@ public class RegistryApp {
         return userInput.nextInt();
     }
 
+    //EFFECTS: return y if it is the correct beast to perform action on; otherwise any other keys
     private String confirmBeast(String action, MagicalBeast beast) {
         displayBeastFullInfo(beast);
         System.out.println("Is this the beast you wish to " + action + "?"
@@ -154,6 +184,7 @@ public class RegistryApp {
         return userInput.next();
     }
 
+    //EFFECTS: modify beast details
     private void doModifyBeastDetails() {
         String beastName = chooseBeast("modify");
 
@@ -180,14 +211,16 @@ public class RegistryApp {
         }
     }
 
+    //EFFECTS: display two functions: select or filter, to the user to select; otherwise go back to the main menu
     private void doDisplay() {
         System.out.println(fullRegistry.getAllMagicalBeastNames());
         System.out.println("\nSelect from:");
         System.out.println("\ts -> select Beast");
         System.out.println("\tf -> filter List");
+        System.out.println("\tany other keys -> back to main menu");
         String input = userInput.next();
         if (input.equals("s")) {
-            selectBeast();
+            selectDisplayBeast();
         } else if (input.equals("f")) {
             filterBeast();
         } else {
@@ -195,10 +228,12 @@ public class RegistryApp {
         }
     }
 
+    //EFFECTS: produce a filtered registry list by species or owner
     private void filterBeast() {
         System.out.println("Filter by:");
         System.out.println("\ts -> species");
         System.out.println("\to -> owner");
+        System.out.println("\tany other keys -> main menu");
         String input = userInput.next();
         if (input.equals("s")) {
             List<String> filterBySpeciesName = getConvertFromMagicalBeastToString(filterBySpecies());
@@ -231,14 +266,14 @@ public class RegistryApp {
         return listString;
     }
 
-
+    //EFFECTS: return a list of magical beast filtered by owner's name
     private List<MagicalBeast> filterByOwner() {
         System.out.println("What is the name of the owner you wish to filter by?");
         String input = userInput.next();
         return fullRegistry.getFilteredMagicalBeastsByOwner(input);
     }
 
-
+    //EFFECTS: return a list of magical beast filtered by species' name
     private List<MagicalBeast> filterBySpecies() {
         String beastSpecies = "";
         boolean keepGoing = true;
@@ -248,21 +283,21 @@ public class RegistryApp {
                     + speciesList);
             beastSpecies = userInput.next();
 
-            if (correctSpecies(beastSpecies)) {
+            if (checkCorrectSpecies(beastSpecies)) {
                 keepGoing = false;
                 return fullRegistry.getFilteredMagicalBeastsBySpecies(beastSpecies);
             } else {
                 System.out.println("Species entered does not exist, please enter again.");
             }
         }
-
         return null;
-
     }
 
-    private void selectBeast() {
+    //EFFECTS: select and display the full information of the selected beast
+    private void selectDisplayBeast() {
         System.out.println("Which of the beasts do you wish to select?"
                 + " Select by entering the position (starting from 0).");
+        System.out.println(fullRegistry.getAllMagicalBeastNames());
         int input = userInput.nextInt();
         MagicalBeast selectedBeast = fullRegistry.getMagicalBeast(input);
         displayBeastFullInfo(selectedBeast);
@@ -271,6 +306,7 @@ public class RegistryApp {
         runRegistry();
     }
 
+    //EFFECTS: display the full information of the magical beast
     private void displayBeastFullInfo(MagicalBeast beast) {
         System.out.println("Unique ID: " + beast.getUniqueId());
         System.out.println("Name: " + beast.getBeastName());
@@ -285,6 +321,7 @@ public class RegistryApp {
         System.out.println("Extra notes: " + beast.getExtraNotes());
     }
 
+    //EFFECTS: change the name of the beast, owner based on the user input
     private void modifySelection(String selectOption, MagicalBeast beast) {
         if (selectOption.equals("b")) {
             System.out.println("What is the name you wish to set?");
@@ -299,12 +336,8 @@ public class RegistryApp {
 
             System.out.println(name + " has been successfully changed.");
         }
-
         System.out.println("Press any key to go back to the main menu.");
         String key = userInput.next();
         runRegistry();
     }
-
-
-
 }
