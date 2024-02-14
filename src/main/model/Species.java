@@ -16,7 +16,8 @@ public class Species {
         this.classification = getSpeciesClassification(this.index);
     }
 
-    //EFFECTS: return the index of the species in the species list, -1 if not found
+    //REQUIRES: species must be one of the speciesList
+    //EFFECTS: return the index of the species in the species list
     private int getSpeciesIndex(String species) {
         ArrayList<String> speciesList = new ArrayList<>(Arrays.asList(
                 "Flobberworm",
@@ -26,12 +27,14 @@ public class Species {
                 "Quintaped")
         );
 
+        int index = -1;
+
         for (int i = 0; i < speciesList.size(); i++) {
             if (species.equals(speciesList.get(i))) {
-                return i;
+                index = i;
             }
         }
-        return -1;
+        return index;
     }
 
     //EFFECTS: return the warning at the index position in the warning list

@@ -3,7 +3,6 @@ package ui;
 import model.MagicalBeast;
 import model.MagicalBeastList;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -379,6 +378,7 @@ public class RegistryApp {
 
     //EFFECTS: return a list of magical beast filtered by species' name
     private List<MagicalBeast> filterBySpecies() {
+        List<MagicalBeast> filteredList = new ArrayList<>();
         String beastSpecies = "";
         boolean keepGoing = true;
 
@@ -388,13 +388,13 @@ public class RegistryApp {
             beastSpecies = userInput.next();
 
             if (checkCorrectSpecies(beastSpecies)) {
+                filteredList = fullRegistry.getFilteredMagicalBeastsBySpecies(beastSpecies);
                 keepGoing = false;
-                return fullRegistry.getFilteredMagicalBeastsBySpecies(beastSpecies);
             } else {
                 System.out.println("Species entered does not exist, please enter again.");
             }
         }
-        return null;
+        return filteredList;
     }
 
     //EFFECTS: select and display the full information of the selected beast

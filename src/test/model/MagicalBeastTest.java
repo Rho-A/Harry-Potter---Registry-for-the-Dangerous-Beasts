@@ -112,4 +112,9 @@ class MagicalBeastTest {
         assertEquals("XXXXX", quintaped.getClassificationInX());
     }
 
+    @Test
+    void testGetUniqueId() {
+        assertEquals(1, flobberworm.getUniqueId());
+        assertEquals(5, quintaped.getUniqueId());
+    }
 }

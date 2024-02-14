@@ -12,6 +12,7 @@ public class SpeciesTest {
     private Species kneazle;
     private Species griffin;
     private Species quintaped;
+    private Species wrongSpecies;
 
     @BeforeEach
     void setUp() {
@@ -20,6 +21,8 @@ public class SpeciesTest {
         kneazle = new Species("Kneazle");
         griffin = new Species("Griffin");
         quintaped = new Species("Quintaped");
+
+        wrongSpecies = new Species("none");
     }
 
     @Test

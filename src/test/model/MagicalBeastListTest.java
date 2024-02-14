@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -137,6 +138,33 @@ public class MagicalBeastListTest {
         List<String> newList = list.getFilteredMagicalBeastsByName("gouty");
         assertEquals(2, newList.size());
         assertEquals(newList.get(1), newList.get(0));
+    }
+
+    @Test
+    void testGetMagicalBeast() {
+        list.addMagicalBeast(flobberworm);
+        list.addMagicalBeast(kneazle);
+        list.addMagicalBeast(griffin);
+        list.addMagicalBeast(quintaped);
+        list.addMagicalBeast(ghoul);
+
+        assertEquals(flobberworm, list.getMagicalBeast(0));
+        assertEquals(ghoul, list.getMagicalBeast(4));
+    }
+
+    @Test
+    void testGetAllMagicalBeastNames() {
+        list.addMagicalBeast(flobberworm);
+        list.addMagicalBeast(kneazle);
+
+        List<String> fullNameList = new ArrayList<>();
+        fullNameList.add("Flobby");
+        fullNameList.add("Dr. McMeowMeoow");
+
+        assertEquals(fullNameList, list.getAllMagicalBeastNames());
+        assertEquals(2, list.getAllMagicalBeastNames().size());
+        assertEquals("Flobby", list.getAllMagicalBeastNames().get(0));
+        assertEquals("Dr. McMeowMeoow", list.getAllMagicalBeastNames().get(1));
     }
 
 }
