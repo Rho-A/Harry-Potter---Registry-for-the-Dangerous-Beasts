@@ -3,6 +3,7 @@ package ui;
 import model.MagicalBeast;
 import model.MagicalBeastList;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -69,6 +70,7 @@ public class RegistryApp {
         }
     }
 
+    //MODIFIES: fullRegistry
     //EFFECTS: add new magical beast to the current registry
     private void doAddBeast() {
         System.out.println("What is the Beast's name?");
@@ -135,11 +137,13 @@ public class RegistryApp {
         return new MagicalBeast(beastName, beastGender, beastSpecies, beastOwner);
     }
 
+    //MODIFIES: fullRegistry
     //EFFECTS: add a magical beast into the registry
     private void addToRegistry(MagicalBeast beast) {
         fullRegistry.addMagicalBeast(beast);
     }
 
+    //MODIFIES: fullRegistry
     //EFFECTS: remove a beast from the registry
     private void doRemoveBeast() {
         String beastName = chooseBeast("remove");
@@ -161,7 +165,7 @@ public class RegistryApp {
         }
     }
 
-    //EFFECTS: return the name of the beast that user wishes to remove
+    //EFFECTS: return the name of the beast that user wishes to act upon
     private String chooseBeast(String action) {
         System.out.println("What is the name of the beast you wish to " + action + "?");
         return userInput.next();
@@ -179,17 +183,17 @@ public class RegistryApp {
     private String confirmBeast(String action, MagicalBeast beast) {
         displayBeastFullInfo(beast);
         System.out.println("Is this the beast you wish to " + action + "?"
-                + "press y to confirm, press any other key to quit");
+                + " Press y to confirm, press any other key to quit");
 
         return userInput.next();
     }
 
-    //EFFECTS: modify beast details
+    //EFFECTS: display functions to modify beast details
     private void doModifyBeastDetails() {
         String beastName = chooseBeast("modify");
 
-        ArrayList<String> listWithSameNameInString = fullRegistry.getFilteredMagicalBeastsByName(beastName);
-        ArrayList<MagicalBeast> listWithSameNameInBeast = fullRegistry.getFilteredMagicalBeastsByBeast(beastName);
+        ArrayList<String> listWithSameNameInString = getFilteredListStringByName(beastName);
+        ArrayList<MagicalBeast> listWithSameNameInBeast = getFilteredListMagicalBeastByName(beastName);
 
         int position = positionBeast(listWithSameNameInString, "modify");
         MagicalBeast beastToModify = listWithSameNameInBeast.get(position);
@@ -200,14 +204,114 @@ public class RegistryApp {
             System.out.println("What would you like to modify?");
             System.out.println("\tb -> change beast name");
             System.out.println("\to -> change owner name");
-            //System.out.println("\tp -> add parents");//
-            //System.out.println("\ts -> add siblings");
-            //System.out.println("\tg -> add offsprings");
-            //System.out.println("\te -> add extra notes");
+            System.out.println("\tp -> add parents");
+            System.out.println("\ts -> add siblings");
+            System.out.println("\tg -> add offsprings");
+            System.out.println("\te -> add extra notes");
             String selectOption = userInput.next();
             modifySelection(selectOption, beastToModify);
         } else {
             runRegistry();
+        }
+    }
+
+    //MODIFIES: beast
+    //EFFECTS: add parent to a beast
+    private void addParents(MagicalBeast beast) {
+        MagicalBeast beastOffspring = beast;
+        MagicalBeast beastParent = askBeastToActOn("parent");
+
+        if (beastOffspring == null || beastParent == null) {
+            runRegistry();
+            return;
+        }
+
+        beastOffspring.addParents(beastParent);
+        beastParent.addOffsprings(beastOffspring);
+
+        System.out.println(beastOffspring.getBeastName() + "'s parent "
+                + beastParent.getBeastName() + " has been successfully added.");
+        System.out.println(beastParent.getBeastName() + "'s offspring "
+                + beastOffspring.getBeastName() + " has been successfully added.");
+    }
+
+    //MODIFIES: beast
+    //EFFECTS: add sibling to a beast
+    private void addSiblings(MagicalBeast beast) {
+        MagicalBeast beastSiblingOne = beast;
+        MagicalBeast beastSiblingTwo = askBeastToActOn("sibling");
+
+        if (beastSiblingOne == null || beastSiblingTwo == null) {
+            runRegistry();
+            return;
+        }
+
+        beastSiblingOne.addSiblings(beastSiblingTwo);
+        beastSiblingTwo.addSiblings(beastSiblingOne);
+
+        System.out.println(beastSiblingOne.getBeastName() + "'s sibling "
+                + beastSiblingTwo.getBeastName() + " has been successfully added.");
+        System.out.println(beastSiblingTwo.getBeastName() + "'s sibling "
+                + beastSiblingOne.getBeastName() + " has been successfully added.");
+    }
+
+    //MODIFIES: beast
+    //EFFECTS: add offspring to a beast
+    private void addOffsprings(MagicalBeast beast) {
+        MagicalBeast beastParent = beast;
+        MagicalBeast beastOffspring = askBeastToActOn("offspring");
+
+        if (beastParent == null || beastOffspring == null) {
+            runRegistry();
+            return;
+        }
+
+        beastParent.addOffsprings(beastOffspring);
+        beastOffspring.addParents(beastParent);
+
+        System.out.println(beastParent.getBeastName() + "'s offspring "
+                + beastOffspring.getBeastName() + " has been successfully added.");
+        System.out.println(beastOffspring.getBeastName() + "'s parent "
+                + beastParent.getBeastName() + " has been successfully added.");
+    }
+
+    //MODIFIES: beast
+    //EFFECTS: add extra notes to a beast
+    private void addExtraNotes(MagicalBeast beast) {
+        userInput.nextLine();
+        System.out.println("Please enter the notes you would like to add to " + beast.getBeastName() + ".");
+        String notes = userInput.nextLine();
+        beast.addExtraNotes(notes);
+        System.out.println("[" + notes + "]" + " has been successfully added to " + beast.getBeastName());
+    }
+
+    //EFFECTS: return a list of name that are the same as beastName
+    private ArrayList<String> getFilteredListStringByName(String beastName) {
+        return fullRegistry.getFilteredMagicalBeastsByName(beastName);
+    }
+
+    //EFFECTS: return a list of MagicalBeast that have the same beastName
+    private ArrayList<MagicalBeast> getFilteredListMagicalBeastByName(String beastName) {
+        return fullRegistry.getFilteredMagicalBeastsByBeast(beastName);
+    }
+
+    //EFFECTS: return the magical beast that the user is looking to perform action on
+    private MagicalBeast askBeastToActOn(String action) {
+        System.out.println("What is the name of the " + action + " ?");
+        String beastName = userInput.next();
+
+        ArrayList<String> sameNameInString = getFilteredListStringByName(beastName);
+        ArrayList<MagicalBeast> sameNameInBeast = getFilteredListMagicalBeastByName(beastName);
+
+        int positionBeast = positionBeast(sameNameInString, "set as the " + action);
+        MagicalBeast beast = sameNameInBeast.get(positionBeast);
+
+        String confirm = confirmBeast("set as a " + action, beast);
+
+        if (confirm.equals("y")) {
+            return beast;
+        } else {
+            return null;
         }
     }
 
@@ -315,13 +419,15 @@ public class RegistryApp {
         System.out.println("Species warning: " + beast.getSpeciesSpecificWarning());
         System.out.println("Classification: " + beast.getClassificationInX());
         System.out.println("Owner's name:" + beast.getOwnerName());
-        System.out.println("Parents: " + beast.getParents());
-        System.out.println("Siblings:" + beast.getSiblings());
-        System.out.println("Offsprings: " + beast.getOffsprings());
+        System.out.println("Parents: " + getConvertFromMagicalBeastToString(beast.getParents()));
+        System.out.println("Siblings:" + getConvertFromMagicalBeastToString(beast.getSiblings()));
+        System.out.println("Offsprings: " + getConvertFromMagicalBeastToString(beast.getOffsprings()));
         System.out.println("Extra notes: " + beast.getExtraNotes());
     }
 
-    //EFFECTS: change the name of the beast, owner based on the user input
+    //MODIFIES: beast
+    //EFFECTS: based on user's input, change the beast name, owner,
+    //         add parents, siblings, offsprings, extra notes of the magical beast
     private void modifySelection(String selectOption, MagicalBeast beast) {
         if (selectOption.equals("b")) {
             System.out.println("What is the name you wish to set?");
@@ -335,6 +441,14 @@ public class RegistryApp {
             beast.setOwnerName(name);
 
             System.out.println(name + " has been successfully changed.");
+        } else if (selectOption.equals("p")) {
+            addParents(beast);
+        } else if (selectOption.equals("s")) {
+            addSiblings(beast);
+        } else if (selectOption.equals("g")) {
+            addOffsprings(beast);
+        } else if (selectOption.equals("e")) {
+            addExtraNotes(beast);
         }
         System.out.println("Press any key to go back to the main menu.");
         String key = userInput.next();
