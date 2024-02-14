@@ -11,6 +11,7 @@ public class MagicalBeastListTest {
     private MagicalBeast flobberworm;
     private MagicalBeast ghoul;
     private MagicalBeast ghoul2;
+    private MagicalBeast ghoul3;
     private MagicalBeast kneazle;
     private MagicalBeast griffin;
     private MagicalBeast quintaped;
@@ -29,6 +30,7 @@ public class MagicalBeastListTest {
         list = new MagicalBeastList();
 
         ghoul2 = new MagicalBeast("gouty2", "Female", "Ghoul", "Black");
+        ghoul3 = new MagicalBeast("gouty", "Female", "Ghoul", "Black");
     }
 
     @Test
@@ -107,6 +109,34 @@ public class MagicalBeastListTest {
         assertEquals(2, newWinsorOwnerList.size());
         assertEquals(flobberworm, newWinsorOwnerList.get(0));
         assertEquals(griffin, newWinsorOwnerList.get(1));
+    }
+
+    @Test
+    void testGtFilteredMagicalBeastsByName() {
+        list.addMagicalBeast(flobberworm);
+        list.addMagicalBeast(kneazle);
+        list.addMagicalBeast(griffin);
+        list.addMagicalBeast(quintaped);
+        list.addMagicalBeast(ghoul);
+        list.addMagicalBeast(ghoul3);
+
+        List<String> newList = list.getFilteredMagicalBeastsByName("gouty");
+        assertEquals(2, newList.size());
+        assertEquals(newList.get(1), newList.get(0));
+    }
+
+    @Test
+    void testGetFilteredMagicalBeastsByBeast() {
+        list.addMagicalBeast(flobberworm);
+        list.addMagicalBeast(kneazle);
+        list.addMagicalBeast(griffin);
+        list.addMagicalBeast(quintaped);
+        list.addMagicalBeast(ghoul);
+        list.addMagicalBeast(ghoul3);
+
+        List<String> newList = list.getFilteredMagicalBeastsByName("gouty");
+        assertEquals(2, newList.size());
+        assertEquals(newList.get(1), newList.get(0));
     }
 
 }

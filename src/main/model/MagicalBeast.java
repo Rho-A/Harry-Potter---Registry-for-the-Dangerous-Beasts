@@ -94,11 +94,6 @@ public class MagicalBeast {
         return this.gender;
     }
 
-    //EFFECTS: return beast species
-   // public Species getSpecies() {
-  //      return this.species;
-  //  }
-
     //EFFECTS: return beast species' name
     public String getSpeciesName() {
         return this.speciesName;

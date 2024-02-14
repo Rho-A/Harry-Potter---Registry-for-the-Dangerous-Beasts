@@ -106,4 +106,10 @@ class MagicalBeastTest {
         assertEquals("Caution recommended.", quintaped.getExtraNotes().get(1));
     }
 
+    @Test
+    void testGetClassificationInX() {
+        assertEquals("X", flobberworm.getClassificationInX());
+        assertEquals("XXXXX", quintaped.getClassificationInX());
+    }
+
 }
