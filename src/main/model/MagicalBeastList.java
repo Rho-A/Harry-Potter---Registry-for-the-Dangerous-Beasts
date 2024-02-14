@@ -75,8 +75,8 @@ public class MagicalBeastList {
 
 
     //EFFECTS: return a list of magical beasts name of the specific beast name
-    public ArrayList<String> getFilteredMagicalBeastsByName(String name) {
-        ArrayList<String> specificName = new ArrayList<>();
+    public List<String> getFilteredMagicalBeastsByName(String name) {
+        List<String> specificName = new ArrayList<>();
 
         for (MagicalBeast b : this.beastList) {
             if (name.equals(b.getBeastName())) {
@@ -87,8 +87,8 @@ public class MagicalBeastList {
     }
 
     //EFFECTS: return a list of magical beasts name of the specific beast name
-    public ArrayList<MagicalBeast> getFilteredMagicalBeastsByBeast(String name) {
-        ArrayList<MagicalBeast> specificName = new ArrayList<>();
+    public List<MagicalBeast> getFilteredMagicalBeastsByBeast(String name) {
+        List<MagicalBeast> specificName = new ArrayList<>();
 
         for (MagicalBeast b : this.beastList) {
             if (name.equals(b.getBeastName())) {

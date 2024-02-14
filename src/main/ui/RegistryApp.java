@@ -147,8 +147,8 @@ public class RegistryApp {
     private void doRemoveBeast() {
         String beastName = chooseBeast("remove");
 
-        ArrayList<String> listWithSameNameInString = fullRegistry.getFilteredMagicalBeastsByName(beastName);
-        ArrayList<MagicalBeast> listWithSameNameInBeast = fullRegistry.getFilteredMagicalBeastsByBeast(beastName);
+        List<String> listWithSameNameInString = fullRegistry.getFilteredMagicalBeastsByName(beastName);
+        List<MagicalBeast> listWithSameNameInBeast = fullRegistry.getFilteredMagicalBeastsByBeast(beastName);
 
         int position = positionBeast(listWithSameNameInString, "modify");
         MagicalBeast beastToRemove = listWithSameNameInBeast.get(position);
@@ -171,7 +171,7 @@ public class RegistryApp {
     }
 
     //EFFECTS: return the index of the targeted beast in the filtered list
-    private int positionBeast(ArrayList<String> filteredList, String action) {
+    private int positionBeast(List<String> filteredList, String action) {
         System.out.println("Which of the following would you like to " + action + "?"
                 + " Select by entering the position (starting from 0).");
         System.out.println(filteredList);
@@ -191,8 +191,8 @@ public class RegistryApp {
     private void doModifyBeastDetails() {
         String beastName = chooseBeast("modify");
 
-        ArrayList<String> listWithSameNameInString = getFilteredListStringByName(beastName);
-        ArrayList<MagicalBeast> listWithSameNameInBeast = getFilteredListMagicalBeastByName(beastName);
+        List<String> listWithSameNameInString = getFilteredListStringByName(beastName);
+        List<MagicalBeast> listWithSameNameInBeast = getFilteredListMagicalBeastByName(beastName);
 
         int position = positionBeast(listWithSameNameInString, "modify");
         MagicalBeast beastToModify = listWithSameNameInBeast.get(position);
@@ -285,12 +285,12 @@ public class RegistryApp {
     }
 
     //EFFECTS: return a list of name that are the same as beastName
-    private ArrayList<String> getFilteredListStringByName(String beastName) {
+    private List<String> getFilteredListStringByName(String beastName) {
         return fullRegistry.getFilteredMagicalBeastsByName(beastName);
     }
 
     //EFFECTS: return a list of MagicalBeast that have the same beastName
-    private ArrayList<MagicalBeast> getFilteredListMagicalBeastByName(String beastName) {
+    private List<MagicalBeast> getFilteredListMagicalBeastByName(String beastName) {
         return fullRegistry.getFilteredMagicalBeastsByBeast(beastName);
     }
 
@@ -299,8 +299,8 @@ public class RegistryApp {
         System.out.println("What is the name of the " + action + " ?");
         String beastName = userInput.next();
 
-        ArrayList<String> sameNameInString = getFilteredListStringByName(beastName);
-        ArrayList<MagicalBeast> sameNameInBeast = getFilteredListMagicalBeastByName(beastName);
+        List<String> sameNameInString = getFilteredListStringByName(beastName);
+        List<MagicalBeast> sameNameInBeast = getFilteredListMagicalBeastByName(beastName);
 
         int positionBeast = positionBeast(sameNameInString, "set as the " + action);
         MagicalBeast beast = sameNameInBeast.get(positionBeast);

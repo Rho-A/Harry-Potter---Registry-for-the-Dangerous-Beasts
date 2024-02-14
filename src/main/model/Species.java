@@ -27,7 +27,7 @@ public class Species {
                 "Quintaped")
         );
 
-        int index = -1;
+        int index = 0;
 
         for (int i = 0; i < speciesList.size(); i++) {
             if (species.equals(speciesList.get(i))) {

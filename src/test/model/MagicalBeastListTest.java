@@ -135,9 +135,16 @@ public class MagicalBeastListTest {
         list.addMagicalBeast(ghoul);
         list.addMagicalBeast(ghoul3);
 
-        List<String> newList = list.getFilteredMagicalBeastsByName("gouty");
+        List<MagicalBeast> afterFilter = new ArrayList<>();
+        afterFilter.add(ghoul);
+        afterFilter.add(ghoul3);
+
+        assertEquals(afterFilter, list.getFilteredMagicalBeastsByBeast("gouty"));
+
+        List<MagicalBeast> newList = list.getFilteredMagicalBeastsByBeast("gouty");
         assertEquals(2, newList.size());
-        assertEquals(newList.get(1), newList.get(0));
+        assertEquals(ghoul, newList.get(0));
+        assertEquals(ghoul3, newList.get(1));
     }
 
     @Test
