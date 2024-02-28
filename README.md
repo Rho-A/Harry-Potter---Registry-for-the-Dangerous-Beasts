@@ -22,6 +22,7 @@ depicted in the story, which inspired me to create a project with a Harry Potter
 - As a user, I want to be able to select and view a list of beasts of a specific species
 - As a user, I want to be able to select and view a list of beasts under a specific owner
 - As a user, I want to be able to select a beast in the list and modify or add new details to that beast
-
+- As a user, I want to be able to save the registry to file (if I so choose)
+- As a user, I want to be able to load the registry from file (if I so choose)
 
 [comment]:<> (An example of text with **bold** and *italic* fonts.)
