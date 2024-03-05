@@ -11,21 +11,21 @@
 }, {
     "uniqueId": "2",
     "beastName": "Ash",
-    "offsprings": [],
-    "extraNotes": [],
+    "offsprings": ["West"],
+    "extraNotes": ["Danger"],
     "siblings": ["Niff"],
     "gender": "Male",
     "speciesName": "Kneazle",
     "ownerName": "Von Azie",
-    "parents": []
+    "parents": ["John"]
 }, {
     "uniqueId": "3",
     "beastName": "Niff",
-    "offsprings": [],
-    "extraNotes": [],
+    "offsprings": ["East"],
+    "extraNotes": ["Danger level 5"],
     "siblings": ["Ash"],
     "gender": "Male",
     "speciesName": "Kneazle",
     "ownerName": "Von Azie",
-    "parents": []
+    "parents": ["Timmy"]
 }]}

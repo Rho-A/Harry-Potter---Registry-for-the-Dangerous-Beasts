@@ -96,10 +96,8 @@ public class JsonReader {
     //EFFECTS: return a list of parents names from jsonParents
     private List<String> modifyParents(JSONArray jsonParents) {
         List<String> parents = new ArrayList<>();
-        if (jsonParents != null) {
-            for (int i = 0; i < jsonParents.length(); i++) {
-                parents.add(jsonParents.getString(i));
-            }
+        for (int i = 0; i < jsonParents.length(); i++) {
+            parents.add(jsonParents.getString(i));
         }
         return parents;
     }
@@ -107,10 +105,8 @@ public class JsonReader {
     //EFFECTS: return a list of siblings names from jsonSiblings
     private List<String> modifySiblings(JSONArray jsonSiblings) {
         List<String> siblings = new ArrayList<>();
-        if (jsonSiblings != null) {
-            for (int i = 0; i < jsonSiblings.length(); i++) {
-                siblings.add(jsonSiblings.getString(i));
-            }
+        for (int i = 0; i < jsonSiblings.length(); i++) {
+            siblings.add(jsonSiblings.getString(i));
         }
         return siblings;
     }
@@ -118,21 +114,18 @@ public class JsonReader {
     //EFFECTS: return a list of offsprings names from jsonOffsprings
     private List<String> modifyOffsprings(JSONArray jsonOffsprings) {
         List<String> offsprings = new ArrayList<>();
-        if (jsonOffsprings != null) {
-            for (int i = 0; i < jsonOffsprings.length(); i++) {
-                offsprings.add(jsonOffsprings.getString(i));
-            }
+        for (int i = 0; i < jsonOffsprings.length(); i++) {
+            offsprings.add(jsonOffsprings.getString(i));
         }
+
         return offsprings;
     }
 
     //EFFECTS: return a list of extra notes names from jsonExtraNotes
     private List<String> modifyExtraNotes(JSONArray jsonExtraNotes) {
         List<String> extraNotes = new ArrayList<>();
-        if (jsonExtraNotes != null) {
-            for (int i = 0; i < jsonExtraNotes.length(); i++) {
-                extraNotes.add(jsonExtraNotes.getString(i));
-            }
+        for (int i = 0; i < jsonExtraNotes.length(); i++) {
+            extraNotes.add(jsonExtraNotes.getString(i));
         }
         return extraNotes;
     }

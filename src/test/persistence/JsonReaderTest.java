@@ -39,10 +39,24 @@ public class JsonReaderTest extends JsonTest {
     void testReaderGeneralMagicalBeastList() {
         JsonReader reader = new JsonReader("./data/testReaderMagicalBeastList.json");
         List<String> emptyList = new ArrayList<>();
+
         List<String> ashSiblings = new ArrayList<>();
+        List<String> ashParents = new ArrayList<>();
+        List<String> ashOffsprings = new ArrayList<>();
+        List<String> ashExtraNotes = new ArrayList<>();
         ashSiblings.add("Niff");
+        ashParents.add("John");
+        ashOffsprings.add("West");
+        ashExtraNotes.add("Danger");
+
         List<String> niffSiblings = new ArrayList<>();
+        List<String> niffParents = new ArrayList<>();
+        List<String> niffOffsprings = new ArrayList<>();
+        List<String> niffExtraNotes = new ArrayList<>();
         niffSiblings.add("Ash");
+        niffParents.add("Timmy");
+        niffOffsprings.add("East");
+        niffExtraNotes.add("Danger level 5");
 
         try {
             MagicalBeastList list = reader.read();
@@ -52,11 +66,12 @@ public class JsonReaderTest extends JsonTest {
             checkMagicalBeast("Will", "Female", "Griffin", "Stoneborne",
                     emptyList, emptyList, emptyList, emptyList, beastList.get(0));
             checkMagicalBeast("Ash", "Male", "Kneazle", "Von Azie",
-                    emptyList, ashSiblings, emptyList, emptyList, beastList.get(1));
+                    ashParents, ashSiblings, ashOffsprings, ashExtraNotes, beastList.get(1));
             checkMagicalBeast("Niff", "Male", "Kneazle", "Von Azie",
-                    emptyList, niffSiblings, emptyList, emptyList, beastList.get(2));
+                    niffParents, niffSiblings, niffOffsprings, niffExtraNotes, beastList.get(2));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
     }
+
 }
