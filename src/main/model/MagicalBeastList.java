@@ -1,9 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MagicalBeastList {
+//Represent a list of Magical Beast
+public class MagicalBeastList implements Writable {
     List<MagicalBeast> beastList;
 
     //EFFECTS: create an empty list of magical beast
@@ -96,5 +101,24 @@ public class MagicalBeastList {
             }
         }
         return specificName;
+    }
+
+    //EFFECTS: return MagicalBeastList to JSON format
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("beastList", beastListToJson());
+        return json;
+    }
+
+    // EFFECTS: returns Magical Beast in this Magical Beast List as a JSON array
+    private JSONArray beastListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (MagicalBeast b : this.beastList) {
+            jsonArray.put(b.toJson());
+        }
+
+        return jsonArray;
     }
 }

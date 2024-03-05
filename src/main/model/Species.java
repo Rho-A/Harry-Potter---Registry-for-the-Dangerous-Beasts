@@ -3,12 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// Represent a species and its associated danger warning and classification
 public class Species {
     private String species;
     private String warning;
     private int index;
     private int classification;
 
+    //EFFECTS: create a species with predetermined index, warning, classification related to its species
     public Species(String speciesName) {
         this.species = speciesName;
         this.index = getSpeciesIndex(speciesName);

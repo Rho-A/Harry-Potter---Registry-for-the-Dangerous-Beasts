@@ -3,6 +3,9 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MagicalBeastTest {
@@ -32,6 +35,42 @@ class MagicalBeastTest {
     }
 
     @Test
+    void testSetParents() {
+        List<String> newParents = new ArrayList<>();
+        newParents.add("One");
+        newParents.add("Two");
+
+        flobberworm.setParents(newParents);
+        assertEquals(2, flobberworm.getParents().size());
+        assertEquals("One", flobberworm.getParents().get(0));
+        assertEquals("Two", flobberworm.getParents().get(1));
+    }
+
+    @Test
+    void testSetSiblings() {
+        List<String> newSiblings = new ArrayList<>();
+        newSiblings.add("One");
+        newSiblings.add("Two");
+
+        griffin.setSiblings(newSiblings);
+        assertEquals(2, griffin.getSiblings().size());
+        assertEquals("One", griffin.getSiblings().get(0));
+        assertEquals("Two", griffin.getSiblings().get(1));
+    }
+
+    @Test
+    void testSetOffsprings() {
+        List<String> newOffsprings = new ArrayList<>();
+        newOffsprings.add("One");
+        newOffsprings.add("Two");
+
+        flobberworm.setOffsprings(newOffsprings);
+        assertEquals(2, flobberworm.getOffsprings().size());
+        assertEquals("One", flobberworm.getOffsprings().get(0));
+        assertEquals("Two", flobberworm.getOffsprings().get(1));
+    }
+
+    @Test
     void testRenameBeastName() {
         assertEquals("Dr. McMeowMeoow", kneazle.getBeastName());
         kneazle.setBeastName("myNewName");
@@ -52,9 +91,9 @@ class MagicalBeastTest {
         flobberworm.addParents(kneazle);
         flobberworm.addParents(griffin);
         assertEquals(3, flobberworm.getParents().size());
-        assertEquals(ghoul, flobberworm.getParents().get(0));
-        assertEquals(kneazle, flobberworm.getParents().get(1));
-        assertEquals(griffin, flobberworm.getParents().get(2));
+        assertEquals("gouty", flobberworm.getParents().get(0));
+        assertEquals("Dr. McMeowMeoow", flobberworm.getParents().get(1));
+        assertEquals("Sam", flobberworm.getParents().get(2));
     }
 
     @Test
@@ -63,8 +102,8 @@ class MagicalBeastTest {
         ghoul.addSiblings(flobberworm);
         ghoul.addSiblings(kneazle);
         assertEquals(2, ghoul.getSiblings().size());
-        assertEquals(flobberworm, ghoul.getSiblings().get(0));
-        assertEquals(kneazle, ghoul.getSiblings().get(1));
+        assertEquals("Flobby", ghoul.getSiblings().get(0));
+        assertEquals("Dr. McMeowMeoow", ghoul.getSiblings().get(1));
     }
 
     @Test
@@ -74,9 +113,9 @@ class MagicalBeastTest {
         flobberworm.addOffsprings(kneazle);
         flobberworm.addOffsprings(quintaped);
         assertEquals(3, flobberworm.getOffsprings().size());
-        assertEquals(ghoul, flobberworm.getOffsprings().get(0));
-        assertEquals(kneazle, flobberworm.getOffsprings().get(1));
-        assertEquals(quintaped, flobberworm.getOffsprings().get(2));
+        assertEquals("gouty", flobberworm.getOffsprings().get(0));
+        assertEquals("Dr. McMeowMeoow", flobberworm.getOffsprings().get(1));
+        assertEquals("Windpour", flobberworm.getOffsprings().get(2));
     }
 
     @Test

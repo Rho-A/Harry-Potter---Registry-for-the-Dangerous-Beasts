@@ -1,12 +1,15 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a magical beast with the following:
 //      unique id, beast's name, gender, species, species specific warning
 //      classification, owner's name, familial relation, extra notes (free text)
-public class MagicalBeast {
+public class MagicalBeast implements Writable {
     private static int nextUniqueId = 1; //unique id of next beast
     private final int uniqueId; //unique id of the beast
     private String beastName; //beast's name
@@ -19,9 +22,9 @@ public class MagicalBeast {
 
     private String ownerName; //name of the beast's owner
 
-    private List<MagicalBeast> parents; //familial relation - parents
-    private List<MagicalBeast> siblings; //familial relation - siblings
-    private List<MagicalBeast> offsprings; //familial relation - offsprings
+    private List<String> parents; //familial relation - parents
+    private List<String> siblings; //familial relation - siblings
+    private List<String> offsprings; //familial relation - offsprings
 
     private List<String> extraNotes; //extra notes - free text
 
@@ -44,6 +47,24 @@ public class MagicalBeast {
     }
 
     //MODIFIES: this
+    //EFFECTS: set list of parents
+    public void setParents(List<String> parents) {
+        this.parents = parents;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: set list of siblings
+    public void setSiblings(List<String> siblings) {
+        this.siblings = siblings;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: set list of offsprings
+    public void setOffsprings(List<String> offsprings) {
+        this.offsprings = offsprings;
+    }
+
+    //MODIFIES: this
     //EFFECTS: rename beast name
     public void setBeastName(String newName) {
         this.beastName = newName;
@@ -58,19 +79,19 @@ public class MagicalBeast {
     //MODIFIES: this
     //EFFECTS: add a magical beast to the parent list
     public void addParents(MagicalBeast id) {
-        this.parents.add(id);
+        this.parents.add(id.getBeastName());
     }
 
     //MODIFIES: this
     //EFFECTS: add a magical beast to the siblings list
     public void addSiblings(MagicalBeast id) {
-        this.siblings.add(id);
+        this.siblings.add(id.getBeastName());
     }
 
     //MODIFIES: this
     //EFFECTS: add a magical beast to the offsprings list
     public void addOffsprings(MagicalBeast id) {
-        this.offsprings.add(id);
+        this.offsprings.add(id.getBeastName());
     }
 
     //MODIFIES: this
@@ -125,17 +146,17 @@ public class MagicalBeast {
     }
 
     //EFFECTS: return parent list
-    public List<MagicalBeast> getParents() {
+    public List<String> getParents() {
         return this.parents;
     }
 
     //EFFECTS: return siblings list
-    public List<MagicalBeast> getSiblings() {
+    public List<String> getSiblings() {
         return this.siblings;
     }
 
     //EFFECTS: return offsprings list
-    public List<MagicalBeast> getOffsprings() {
+    public List<String> getOffsprings() {
         return this.offsprings;
     }
 
@@ -143,4 +164,26 @@ public class MagicalBeast {
     public List<String> getExtraNotes() {
         return this.extraNotes;
     }
+
+    //EFFECTS: return MagicalBeast in Json format
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        //json.put("uniqueId", uniqueId);
+        json.put("beastName", beastName);
+        json.put("gender", gender);
+
+        //json.put("species", species);
+        json.put("speciesName", speciesName);
+        //json.put("speciesSpecificWarning", speciesSpecificWarning);
+        //json.put("classification", classification);
+
+        json.put("ownerName", ownerName);
+        json.put("parents", parents);
+        json.put("siblings", siblings);
+        json.put("offsprings", offsprings);
+        json.put("extraNotes", extraNotes);
+        return json;
+    }
+
 }

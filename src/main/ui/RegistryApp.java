@@ -2,7 +2,11 @@ package ui;
 
 import model.MagicalBeast;
 import model.MagicalBeastList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,8 +14,11 @@ import java.util.Scanner;
 
 // Magical Beast Registry application
 public class RegistryApp {
+    private static final String JSON_STORE = "./data/registry.json";
     private MagicalBeastList fullRegistry = new MagicalBeastList();
     private Scanner userInput = new Scanner(System.in);
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     ArrayList<String> speciesList = new ArrayList<>(Arrays.asList(
             "Flobberworm",
@@ -21,7 +28,9 @@ public class RegistryApp {
             "Quintaped")
     );
 
-    public RegistryApp() {
+    public RegistryApp() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runRegistry();
     }
 
@@ -51,6 +60,8 @@ public class RegistryApp {
         System.out.println("\tr -> remove Beast");
         System.out.println("\tm -> modify Beast details");
         System.out.println("\td -> display");
+        System.out.println("\ts -> save work room to file");
+        System.out.println("\tl -> load work room from file");
         System.out.println("\tq -> quit");
     }
 
@@ -64,6 +75,10 @@ public class RegistryApp {
             doModifyBeastDetails();
         } else if (userCommand.equals("d")) {
             doDisplay();
+        } else if (userCommand.equals("s")) {
+            saveRegistry();
+        } else if (userCommand.equals("l")) {
+            loadRegistry();
         } else {
             System.out.println("Selection not valid. Please retry.");
         }
@@ -419,9 +434,9 @@ public class RegistryApp {
         System.out.println("Species warning: " + beast.getSpeciesSpecificWarning());
         System.out.println("Classification: " + beast.getClassificationInX());
         System.out.println("Owner's name:" + beast.getOwnerName());
-        System.out.println("Parents: " + getConvertFromMagicalBeastToString(beast.getParents()));
-        System.out.println("Siblings:" + getConvertFromMagicalBeastToString(beast.getSiblings()));
-        System.out.println("Offsprings: " + getConvertFromMagicalBeastToString(beast.getOffsprings()));
+        System.out.println("Parents: " + beast.getParents());
+        System.out.println("Siblings:" + beast.getSiblings());
+        System.out.println("Offsprings: " + beast.getOffsprings());
         System.out.println("Extra notes: " + beast.getExtraNotes());
     }
 
@@ -453,5 +468,28 @@ public class RegistryApp {
         System.out.println("Press any key to go back to the main menu.");
         String key = userInput.next();
         runRegistry();
+    }
+
+    // EFFECTS: saves the registry to file
+    private void saveRegistry() {
+        try {
+            jsonWriter.open();;
+            jsonWriter.write(fullRegistry);
+            jsonWriter.close();
+            System.out.println("Saved registry to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads registry from file
+    private void loadRegistry() {
+        try {
+            fullRegistry = jsonReader.read();
+            System.out.println("Loaded registry from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
     }
 }
