@@ -12,6 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+// Citation: https://github.students.cs.ubc.ca/CPSC210/TellerApp
+//           from CPSC 210 - TellerApp
+
 // Magical Beast Registry application
 public class RegistryApp {
     private static final String JSON_STORE = "./data/registry.json";
