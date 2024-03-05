@@ -68,6 +68,7 @@ public class JsonWriterTest extends JsonTest {
             checkMagicalBeast("Louis", "Female","Ghoul", "Nox",
                     emptyList, emptyList, emptyList, emptyList, beastList.get(1));
 
+
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

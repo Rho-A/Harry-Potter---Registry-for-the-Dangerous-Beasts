@@ -7,6 +7,7 @@
         "gender": "Male",
         "speciesName": "Griffin",
         "ownerName": "Willborne",
+        "uniqueId": "1b0faf31-ac27-4ed6-a01c-8d16a184233a",
         "parents": []
     },
     {
@@ -17,6 +18,7 @@
         "gender": "Female",
         "speciesName": "Ghoul",
         "ownerName": "Nox",
+        "uniqueId": "02f13e83-7207-40c8-bed9-1a4ecb6fdd13",
         "parents": []
     }
 ]}

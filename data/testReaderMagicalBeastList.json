@@ -1,4 +1,5 @@
 {"beastList": [{
+    "uniqueId": "1",
     "beastName": "Will",
     "offsprings": [],
     "extraNotes": [],
@@ -8,6 +9,7 @@
     "ownerName": "Stoneborne",
     "parents": []
 }, {
+    "uniqueId": "2",
     "beastName": "Ash",
     "offsprings": [],
     "extraNotes": [],
@@ -17,6 +19,7 @@
     "ownerName": "Von Azie",
     "parents": []
 }, {
+    "uniqueId": "3",
     "beastName": "Niff",
     "offsprings": [],
     "extraNotes": [],

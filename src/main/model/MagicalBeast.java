@@ -5,13 +5,14 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 // Represents a magical beast with the following:
 //      unique id, beast's name, gender, species, species specific warning
 //      classification, owner's name, familial relation, extra notes (free text)
 public class MagicalBeast implements Writable {
-    private static int nextUniqueId = 1; //unique id of next beast
-    private final int uniqueId; //unique id of the beast
+    //private static int nextUniqueId = 1; //unique id of next beast
+    private String uniqueId; //unique id of the beast
     private String beastName; //beast's name
     private final String gender; //beast's gender
 
@@ -32,7 +33,9 @@ public class MagicalBeast implements Writable {
     //          gender must be one of the three: Male, Female, Non-gendered
     //EFFECTS: create a magical beast with a unique id
     public MagicalBeast(String beastName, String gender, String species, String ownerName) {
-        this.uniqueId = nextUniqueId++;
+        //this.uniqueId = nextUniqueId++;
+        UUID randomUID = UUID.randomUUID();
+        this.uniqueId = randomUID.toString();
         this.beastName = beastName;
         this.gender = gender;
         this.species = new Species(species);
@@ -44,6 +47,12 @@ public class MagicalBeast implements Writable {
         this.siblings = new ArrayList<>();
         this.offsprings = new ArrayList<>();
         this.extraNotes = new ArrayList<>();
+    }
+
+    //MODIFIES: this
+    //EFFECTS: set uniqueId
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
     }
 
     //MODIFIES: this
@@ -62,6 +71,12 @@ public class MagicalBeast implements Writable {
     //EFFECTS: set list of offsprings
     public void setOffsprings(List<String> offsprings) {
         this.offsprings = offsprings;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: set list of extra notes
+    public void setExtraNotes(List<String> extraNotes) {
+        this.extraNotes = extraNotes;
     }
 
     //MODIFIES: this
@@ -101,7 +116,7 @@ public class MagicalBeast implements Writable {
     }
 
     //EFFECTS: return the unique id
-    public int getUniqueId() {
+    public String getUniqueId() {
         return this.uniqueId;
     }
 
@@ -169,15 +184,10 @@ public class MagicalBeast implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        //json.put("uniqueId", uniqueId);
+        json.put("uniqueId", uniqueId);
         json.put("beastName", beastName);
         json.put("gender", gender);
-
-        //json.put("species", species);
         json.put("speciesName", speciesName);
-        //json.put("speciesSpecificWarning", speciesSpecificWarning);
-        //json.put("classification", classification);
-
         json.put("ownerName", ownerName);
         json.put("parents", parents);
         json.put("siblings", siblings);

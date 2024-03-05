@@ -41,8 +41,8 @@ public class JsonReaderTest extends JsonTest {
         List<String> emptyList = new ArrayList<>();
         List<String> ashSiblings = new ArrayList<>();
         ashSiblings.add("Niff");
-        List<String> niffSilbings = new ArrayList<>();
-        niffSilbings.add("Ash");
+        List<String> niffSiblings = new ArrayList<>();
+        niffSiblings.add("Ash");
 
         try {
             MagicalBeastList list = reader.read();
@@ -54,7 +54,7 @@ public class JsonReaderTest extends JsonTest {
             checkMagicalBeast("Ash", "Male", "Kneazle", "Von Azie",
                     emptyList, ashSiblings, emptyList, emptyList, beastList.get(1));
             checkMagicalBeast("Niff", "Male", "Kneazle", "Von Azie",
-                    emptyList, niffSilbings, emptyList, emptyList, beastList.get(2));
+                    emptyList, niffSiblings, emptyList, emptyList, beastList.get(2));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

@@ -63,7 +63,7 @@ public class JsonReader {
     // EFFECTS: parses Magical Beast from JSON object and adds it to beastList
     private void addBeast(MagicalBeastList beastList, JSONObject jsonObject) {
         //int nextUniqueId = jsonObject.getInt("nextUniqueId");
-        //int uniqueId = jsonObject.getInt("uniqueId");
+        String uniqueId = jsonObject.getString("uniqueId");
         String beastName = jsonObject.getString("beastName");
         String gender = jsonObject.getString("gender");
 
@@ -72,43 +72,69 @@ public class JsonReader {
         String ownerName = jsonObject.getString("ownerName");
 
         JSONArray jsonParents = jsonObject.getJSONArray("parents");
+        List<String> parents = modifyParents(jsonParents);
+
+        JSONArray jsonSiblings = jsonObject.getJSONArray("siblings");
+        List<String> siblings = modifySiblings(jsonSiblings);
+
+        JSONArray jsonOffsprings = jsonObject.getJSONArray("offsprings");
+        List<String> offsprings = modifyOffsprings(jsonOffsprings);
+
+        JSONArray jsonExtraNotes = jsonObject.getJSONArray("extraNotes");
+        List<String> extraNotes = modifyExtraNotes(jsonExtraNotes);
+
+        MagicalBeast beast = new MagicalBeast(beastName, gender, speciesName, ownerName);
+        beast.setUniqueId(uniqueId);
+        beast.setParents(parents);
+        beast.setSiblings(siblings);
+        beast.setOffsprings(offsprings);
+        beast.setExtraNotes(extraNotes);
+
+        beastList.addMagicalBeast(beast);
+    }
+
+    //EFFECTS: return a list of parents names from jsonParents
+    private List<String> modifyParents(JSONArray jsonParents) {
         List<String> parents = new ArrayList<>();
         if (jsonParents != null) {
             for (int i = 0; i < jsonParents.length(); i++) {
                 parents.add(jsonParents.getString(i));
             }
         }
+        return parents;
+    }
 
-        JSONArray jsonSiblings = jsonObject.getJSONArray("siblings");
+    //EFFECTS: return a list of siblings names from jsonSiblings
+    private List<String> modifySiblings(JSONArray jsonSiblings) {
         List<String> siblings = new ArrayList<>();
         if (jsonSiblings != null) {
             for (int i = 0; i < jsonSiblings.length(); i++) {
                 siblings.add(jsonSiblings.getString(i));
             }
         }
+        return siblings;
+    }
 
-        JSONArray jsonOffsprings = jsonObject.getJSONArray("offsprings");
+    //EFFECTS: return a list of offsprings names from jsonOffsprings
+    private List<String> modifyOffsprings(JSONArray jsonOffsprings) {
         List<String> offsprings = new ArrayList<>();
         if (jsonOffsprings != null) {
             for (int i = 0; i < jsonOffsprings.length(); i++) {
                 offsprings.add(jsonOffsprings.getString(i));
             }
         }
+        return offsprings;
+    }
 
-        JSONArray jsonExtraNotes = jsonObject.getJSONArray("extraNotes");
+    //EFFECTS: return a list of extra notes names from jsonExtraNotes
+    private List<String> modifyExtraNotes(JSONArray jsonExtraNotes) {
         List<String> extraNotes = new ArrayList<>();
         if (jsonExtraNotes != null) {
             for (int i = 0; i < jsonExtraNotes.length(); i++) {
                 extraNotes.add(jsonExtraNotes.getString(i));
             }
         }
-
-        MagicalBeast beast = new MagicalBeast(beastName, gender, speciesName, ownerName);
-        beast.setParents(parents);
-        beast.setSiblings(siblings);
-        beast.setOffsprings(offsprings);
-
-        beastList.addMagicalBeast(beast);
+        return extraNotes;
     }
 
 }

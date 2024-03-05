@@ -35,6 +35,12 @@ class MagicalBeastTest {
     }
 
     @Test
+    void testUniqueId() {
+        flobberworm.setUniqueId("10");
+        assertEquals("10", flobberworm.getUniqueId());
+    }
+
+    @Test
     void testSetParents() {
         List<String> newParents = new ArrayList<>();
         newParents.add("One");
@@ -67,6 +73,18 @@ class MagicalBeastTest {
         flobberworm.setOffsprings(newOffsprings);
         assertEquals(2, flobberworm.getOffsprings().size());
         assertEquals("One", flobberworm.getOffsprings().get(0));
+        assertEquals("Two", flobberworm.getOffsprings().get(1));
+    }
+
+    @Test
+    void testSetExtraNotes() {
+        List<String> newExtraNotes = new ArrayList<>();
+        newExtraNotes.add("new note");
+        newExtraNotes.add("Two");
+
+        flobberworm.setOffsprings(newExtraNotes);
+        assertEquals(2, flobberworm.getOffsprings().size());
+        assertEquals("new note", flobberworm.getOffsprings().get(0));
         assertEquals("Two", flobberworm.getOffsprings().get(1));
     }
 
@@ -149,11 +167,6 @@ class MagicalBeastTest {
     void testGetClassificationInX() {
         assertEquals("X", flobberworm.getClassificationInX());
         assertEquals("XXXXX", quintaped.getClassificationInX());
-    }
-
-    @Test
-    void testGetUniqueId() {
-        assertEquals(40, quintaped.getUniqueId());
     }
 
 }

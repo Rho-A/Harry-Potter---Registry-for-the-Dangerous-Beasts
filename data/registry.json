@@ -1,10 +1,35 @@
-{"beastList": [{
-    "beastName": "123",
-    "offsprings": [],
-    "extraNotes": [],
-    "siblings": ["234"],
-    "gender": "Female",
-    "speciesName": "Griffin",
-    "ownerName": "564",
-    "parents": []
-}]}
+{"beastList": [
+    {
+        "beastName": "123",
+        "offsprings": [],
+        "extraNotes": [],
+        "siblings": [],
+        "gender": "Female",
+        "speciesName": "Griffin",
+        "ownerName": "32",
+        "uniqueId": "970d9da1-48bc-421e-a538-e659c22b85ea",
+        "parents": []
+    },
+    {
+        "beastName": "ef",
+        "offsprings": [],
+        "extraNotes": [],
+        "siblings": [],
+        "gender": "Unknown",
+        "speciesName": "Griffin",
+        "ownerName": "e",
+        "uniqueId": "b4268402-35af-4595-a138-4c49da748ccc",
+        "parents": []
+    },
+    {
+        "beastName": "Ma",
+        "offsprings": [],
+        "extraNotes": [],
+        "siblings": [],
+        "gender": "Female",
+        "speciesName": "Quintaped",
+        "ownerName": "ef",
+        "uniqueId": "ed8d52f2-5f5e-4a7e-92ad-0a192a1be0a1",
+        "parents": []
+    }
+]}
