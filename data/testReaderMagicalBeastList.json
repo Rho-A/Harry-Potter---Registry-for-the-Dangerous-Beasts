@@ -1,0 +1,28 @@
+{"beastList": [{
+    "beastName": "Will",
+    "offsprings": [],
+    "extraNotes": [],
+    "siblings": [],
+    "gender": "Female",
+    "speciesName": "Griffin",
+    "ownerName": "Stoneborne",
+    "parents": []
+}, {
+    "beastName": "Ash",
+    "offsprings": [],
+    "extraNotes": [],
+    "siblings": ["Niff"],
+    "gender": "Male",
+    "speciesName": "Kneazle",
+    "ownerName": "Von Azie",
+    "parents": []
+}, {
+    "beastName": "Niff",
+    "offsprings": [],
+    "extraNotes": [],
+    "siblings": ["Ash"],
+    "gender": "Male",
+    "speciesName": "Kneazle",
+    "ownerName": "Von Azie",
+    "parents": []
+}]}

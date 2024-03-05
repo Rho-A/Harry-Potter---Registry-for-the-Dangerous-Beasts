@@ -1,0 +1,22 @@
+{"beastList": [
+    {
+        "beastName": "Will",
+        "offsprings": [],
+        "extraNotes": [],
+        "siblings": [],
+        "gender": "Male",
+        "speciesName": "Griffin",
+        "ownerName": "Willborne",
+        "parents": []
+    },
+    {
+        "beastName": "Louis",
+        "offsprings": [],
+        "extraNotes": [],
+        "siblings": [],
+        "gender": "Female",
+        "speciesName": "Ghoul",
+        "ownerName": "Nox",
+        "parents": []
+    }
+]}
