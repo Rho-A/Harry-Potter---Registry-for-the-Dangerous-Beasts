@@ -5,31 +5,20 @@
         "extraNotes": [],
         "siblings": [],
         "gender": "Female",
-        "speciesName": "Griffin",
-        "ownerName": "32",
-        "uniqueId": "970d9da1-48bc-421e-a538-e659c22b85ea",
+        "speciesName": "Ghoul",
+        "ownerName": "qwe",
+        "uniqueId": "55874907-ba08-4aeb-8d24-22ee2522117b",
         "parents": []
     },
     {
-        "beastName": "ef",
+        "beastName": "890",
         "offsprings": [],
         "extraNotes": [],
         "siblings": [],
-        "gender": "Unknown",
-        "speciesName": "Griffin",
-        "ownerName": "e",
-        "uniqueId": "b4268402-35af-4595-a138-4c49da748ccc",
-        "parents": []
-    },
-    {
-        "beastName": "Ma",
-        "offsprings": [],
-        "extraNotes": [],
-        "siblings": [],
-        "gender": "Female",
-        "speciesName": "Quintaped",
-        "ownerName": "ef",
-        "uniqueId": "ed8d52f2-5f5e-4a7e-92ad-0a192a1be0a1",
+        "gender": "Male",
+        "speciesName": "Kneazle",
+        "ownerName": "bnm",
+        "uniqueId": "c165c671-d325-49c3-97bb-ef9996d57cd5",
         "parents": []
     }
 ]}
