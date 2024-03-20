@@ -6,6 +6,7 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,23 +26,33 @@ public class RegistryMainPanel extends JPanel implements ActionListener {
     private Scanner userInput = new Scanner(System.in);
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private Color darkMode = new Color(0x292929);
 
     private String beastName;
     private String beastGender;
     private String beastSpecies;
     private String beastOwner;
+    private String beastDetailText;
 
     private JPanel mainPanel;
     private JLabel selectLabel;
 
-    private JPanel centrePanel = new JPanel(new CardLayout());
-
     private JPanel northPanel = new JPanel();
     private JLabel northImage = new JLabel();
-    private JLabel northTitle;
+    private JLabel northTitle = new JLabel();
 
     private JPanel addPanel;
     private JPanel displayPanel;
+
+    private JScrollPane detailsPanel;
+
+    private JPanel filterSidePanel;
+
+    private JPanel beastDetailsPanel;
+    private JPanel detailsButtonPanel;
+    private JPanel backToMainPanel;
+    private JPanel leftSidePanel;
+    private JPanel rightSidePanel;
 
     private JButton addBeast;
     private JButton removeBeast;
@@ -50,15 +61,23 @@ public class RegistryMainPanel extends JPanel implements ActionListener {
     private JButton save;
     private JButton load;
     private JButton quit;
+    private JButton details;
+    private JButton backToMain;
+
+    private JTable table;
 
     private JTextField beastText;
     private JTextField ownerText;
+    private JTextField text;
     private JRadioButton female;
     private JRadioButton male;
     private JRadioButton unknown;
-    private JComboBox speciesDropdown;
+    private JComboBox dropDown;
 
+    private String[] header = {"Id", "Name", "Gender", "Owner", "Species", "Classification"};
+    private String[][] data;
 
+    private int rowSelected;
 
     private static final String title
             = "Department for the Regulation and Control of Magical Creatures: Dangerous Beast Registry";
@@ -70,38 +89,337 @@ public class RegistryMainPanel extends JPanel implements ActionListener {
             "Griffin",
             "Quintaped"};
 
+    private String[][] fullRegistryData() {
+        List<MagicalBeast> fullList = fullRegistry.getAllMagicalBeasts();
+        int registrySize = fullRegistry.getAllMagicalBeasts().size();
+        data = new String[registrySize][];
+        int i = 0;
+        for (MagicalBeast b : fullList) {
+            String[] beastDetails = new String[6];
+            beastDetails[0] = b.getUniqueId();
+            beastDetails[1] = b.getBeastName();
+            beastDetails[2] = b.getGender();
+            beastDetails[3] = b.getOwnerName();
+            beastDetails[4] = b.getSpeciesName();
+            beastDetails[5] = b.getClassificationInX();
+
+            data[i] = beastDetails;
+            i++;
+        }
+        return data;
+    }
+
+    private String[][] filterData(String option, String name) {
+        List<MagicalBeast> filteredList;
+        if (option.equals("Species")) {
+            filteredList = fullRegistry.getFilteredMagicalBeastsBySpecies(name);
+            System.out.println(filteredList);
+        } else {
+            filteredList = fullRegistry.getFilteredMagicalBeastsByOwner(name);
+            System.out.println(filteredList);
+        }
+        int registrySize = filteredList.size();
+        data = new String[registrySize][];
+        int i = 0;
+        for (MagicalBeast b : filteredList) {
+            String[] beastDetails = new String[6];
+            beastDetails[0] = b.getUniqueId();
+            beastDetails[1] = b.getBeastName();
+            beastDetails[2] = b.getGender();
+            beastDetails[3] = b.getOwnerName();
+            beastDetails[4] = b.getSpeciesName();
+            beastDetails[5] = b.getClassificationInX();
+
+            data[i] = beastDetails;
+            i++;
+        }
+        return data;
+    }
+
+    private void navigateDetailScreen() {
+        removeAll();
+        setBackground(darkMode);
+        setPreferredSize(new Dimension(1000,800));
+        setLayout(new BorderLayout());
+
+        createDetailsPanel();
+        createFilterSidePanel();
+        createDetailsButtonPanel();
+        createBackToMainPanel();
+        createLeftSidePanel();
+        createRightSidePanel();
+
+
+        JPanel blankN = new JPanel();
+        blankN.setBackground(darkMode);
+        blankN.setPreferredSize(new Dimension(80,80));
+        JPanel blankW = new JPanel();
+        blankW.setBackground(darkMode);
+        blankW.setPreferredSize(new Dimension(80,40));
+        JPanel blankS = new JPanel();
+        blankS.setBackground(darkMode);
+        blankS.setPreferredSize(new Dimension(80,80));
+
+        add(blankN, BorderLayout.NORTH);
+        add(leftSidePanel, BorderLayout.WEST);
+        add(detailsButtonPanel, BorderLayout.SOUTH);
+        add(detailsPanel, BorderLayout.CENTER);
+        add(rightSidePanel, BorderLayout.EAST);
+
+
+        revalidate();
+        repaint();
+    }
+
+    private void createRightSidePanel() {
+        rightSidePanel = new JPanel();
+        rightSidePanel.setBackground(darkMode);
+        rightSidePanel.setLayout(new BoxLayout(rightSidePanel, BoxLayout.Y_AXIS));
+        JPanel blankE = new JPanel();
+        blankE.setBackground(darkMode);
+        blankE.setPreferredSize(new Dimension(250,200));
+        rightSidePanel.add(blankE);
+
+/*        if (rowSelected < 0) {
+            rightSidePanel.remove(beastDetailsPanel);
+            rightSidePanel.add(blankE);
+        } else {
+            createBeastDetailsPanel();
+            rightSidePanel.remove(blankE);
+            rightSidePanel.add(beastDetailsPanel);
+        }*/
+        revalidate();
+        repaint();
+    }
+
+    private void navigateFilteredDetailScreen() {
+        removeAll();
+        setBackground(darkMode);
+        setPreferredSize(new Dimension(1000,800));
+        setLayout(new BorderLayout());
+
+        createFilteredDetailsPanel();
+        createFilterSidePanel();
+        createBackToMainPanel();
+        createLeftSidePanel();
+
+        JPanel blankN = new JPanel();
+        blankN.setBackground(darkMode);
+        blankN.setPreferredSize(new Dimension(80,80));
+        JPanel blankW = new JPanel();
+        blankW.setBackground(darkMode);
+        blankW.setPreferredSize(new Dimension(80,40));
+        JPanel blankS = new JPanel();
+        blankS.setBackground(darkMode);
+        blankS.setPreferredSize(new Dimension(80,80));
+        JPanel blankE = new JPanel();
+        blankE.setBackground(darkMode);
+        blankE.setPreferredSize(new Dimension(80,40));
+
+        add(blankN, BorderLayout.NORTH);
+        add(leftSidePanel, BorderLayout.WEST);
+        add(blankS, BorderLayout.SOUTH);
+        add(detailsPanel, BorderLayout.CENTER);
+        add(blankE, BorderLayout.EAST);
+        revalidate();
+        repaint();
+    }
+
     public RegistryMainPanel() throws FileNotFoundException {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        setBackground(new Color(0x292929));
+        navigateMainScreen();
+    }
+
+    public void createLeftSidePanel() {
+        leftSidePanel = new JPanel();
+        leftSidePanel.setBackground(darkMode);
+        leftSidePanel.setLayout(new BoxLayout(leftSidePanel, BoxLayout.Y_AXIS));
+        backToMainPanel.setPreferredSize(new Dimension(250, 50));
+        filterSidePanel.setPreferredSize(new Dimension(250, 500));
+        leftSidePanel.add(backToMainPanel);
+        leftSidePanel.add(filterSidePanel);
+    }
+
+    public void createFilterSidePanel() {
+        filterSidePanel = new JPanel();
+        filterSidePanel.setBackground(darkMode);
+        JLabel filterLabel = new JLabel("Filter by:");
+        filterLabel.setForeground(Color.white);
+        dropDown = new JComboBox(new String[] {"Species", "Owner"});
+        text = new JTextField();
+        text.setPreferredSize(new Dimension(100,24));
+        text.setFont(new Font(Font.SERIF, Font.PLAIN, 16));
+        JButton submit = new JButton("Submit");
+        filterSidePanel.add(filterLabel);
+        filterSidePanel.add(dropDown);
+        filterSidePanel.add(text);
+        filterSidePanel.add(submit);
+        submit.addActionListener(this::submitFilter);
+    }
+
+    public void submitFilter(ActionEvent e) {
+        String option = dropDown.getSelectedItem().toString();
+        String filterName = text.getText();
+
+        filterData(option, filterName);
+        navigateFilteredDetailScreen();
+    }
+
+    private void createDetailsPanel() {
+        fullRegistryData();
+        table = new JTable(data, header);
+        table.setMaximumSize(new Dimension(50, 50));
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        detailsPanel = new JScrollPane(table);
+        detailsPanel.setBackground(darkMode);
+        detailsPanel.getVerticalScrollBar();
+        detailsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),"Registry Details",
+                TitledBorder.CENTER, TitledBorder.TOP, new Font(Font.SERIF, Font.BOLD, 24), Color.white));
+    }
+
+    private void createBackToMainPanel() {
+        backToMainPanel = new JPanel();
+        backToMainPanel.setBackground(darkMode);
+        backToMain = new JButton("Go back to main menu");
+        backToMain.addActionListener(e -> navigateMainScreen());
+        backToMainPanel.add(backToMain);
+    }
+
+    private void createDetailsButtonPanel() {
+        detailsButtonPanel = new JPanel();
+        detailsButtonPanel.setBackground(darkMode);
+        removeBeast = new JButton("Remove Beast");
+        modifyBeast = new JButton("Modify Beast Details");
+        details = new JButton("See details");
+
+        removeBeast.addActionListener(e -> removeBeastAction());
+        modifyBeast.addActionListener(e -> doModifyBeastDetails());
+        details.addActionListener(e -> addBeastDetailPanelToRHS());
+        detailsButtonPanel.add(removeBeast);
+        detailsButtonPanel.add(modifyBeast);
+        detailsButtonPanel.add(details);
+    }
+
+    private void addBeastDetailPanelToRHS() {
+        rightSidePanel.removeAll();
+        rightSidePanel.setLayout(new BoxLayout(rightSidePanel, BoxLayout.Y_AXIS));
+        rightSidePanel.setBackground(darkMode);
+        createBeastDetailsPanel();
+        beastDetailsPanel.setPreferredSize(new Dimension(250,300));
+        rightSidePanel.add(beastDetailsPanel);
+
+        revalidate();
+        repaint();
+    }
+
+    private void removeBeastAction() {
+        rowSelected = table.getSelectedRow();
+        MagicalBeast b = fullRegistry.getMagicalBeast(rowSelected);
+        fullRegistry.removeMagicalBeast(b);
+        navigateDetailScreen();
+    }
+
+    private void createBeastDetailsPanel() {
+        beastDetailsPanel = new JPanel();
+        beastDetailsPanel.setLayout(new BoxLayout(beastDetailsPanel, BoxLayout.PAGE_AXIS));
+        String[] labels = {"Unique ID: ", "Name: ", "Gender: ", "Species: ", "Species warning: ", "Classification: ",
+                "Owner: ", "Parents: ", "Siblings: ", "Offsprings: ", "Extra notes: "};
+        rowSelected = table.getSelectedRow();
+        System.out.println(rowSelected);
+
+        MagicalBeast b = fullRegistry.getMagicalBeast(rowSelected);
+        JLabel detailsText;
+        JLabel arrayDetailText;
+        for (String i : labels) {
+            if (i.equals("Parents: ") | i.equals("Siblings: ") | i.equals("Offsprings: ") | i.equals("Extra notes: ")) {
+                List<String> arrayText =  beastArrayDetail(i, b);
+                for (String s : arrayText) {
+                    arrayDetailText = new JLabel(i + s);
+                    beastDetailsPanel.add(arrayDetailText);
+                }
+            } else {
+                beastDetailText = beastDetail(i, b);
+                detailsText = new JLabel(i + beastDetailText);
+                beastDetailsPanel.add(detailsText);
+            }
+        }
+    }
+
+    private List<String> beastArrayDetail(String option, MagicalBeast beast) {
+        if (option.equals("Parents: ")) {
+            return beast.getParents();
+        } else if (option.equals("Siblings: ")) {
+            return beast.getSiblings();
+        } else if (option.equals("Offsprings: ")) {
+            return beast.getOffsprings();
+        } else {
+            return beast.getExtraNotes();
+        }
+    }
+
+
+    private String beastDetail(String option, MagicalBeast beast) {
+        if (option.equals("Unique ID: ")) {
+            return beast.getUniqueId();
+        } else if (option.equals("Name: ")) {
+            return beast.getBeastName();
+        } else if (option.equals("Species: ")) {
+            return beast.getSpeciesName();
+        } else if (option.equals("Species warning: ")) {
+            return beast.getSpeciesSpecificWarning();
+        } else if (option.equals("Classification: ")) {
+            return beast.getClassificationInX();
+        } else {
+            return beast.getOwnerName();
+        }
+    }
+
+    private void createFilteredDetailsPanel() {
+        JTable table = new JTable(data, header);
+        table.setMaximumSize(new Dimension(50, 50));
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        detailsPanel = new JScrollPane(table);
+        detailsPanel.setBackground(darkMode);
+        detailsPanel.getVerticalScrollBar();
+        detailsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),"Registry Details",
+                TitledBorder.CENTER, TitledBorder.TOP, new Font(Font.SERIF, Font.BOLD, 24), Color.white));
+    }
+
+    private void navigateMainScreen() {
+        removeAll();
+        setBackground(darkMode);
         setPreferredSize(new Dimension(1000,800));
         setLayout(new BorderLayout(0,50));
         createNorthPanel();
         createMainPanel();
         add(northPanel, BorderLayout.PAGE_START);
         add(mainPanel, BorderLayout.CENTER);
+        revalidate();
+        repaint();
     }
 
     private void createNorthPanel() {
-        northTitle = new JLabel(title);
-        northTitle.setBackground(new Color(0x292929));
+        northTitle.setText(title);
+        northTitle.setBackground(darkMode);
         northTitle.setForeground(Color.white);
         northTitle.setFont(new Font(Font.SERIF, Font.ITALIC | Font.BOLD, 24));
         northTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         northImage.setIcon(new ImageIcon("./data/white-logo.png"));
-        northImage.setBackground(new Color(0x292929));
+        northImage.setBackground(darkMode);
         northImage.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.PAGE_AXIS));
-        northPanel.setBackground(new Color(0x292929));
+        northPanel.setBackground(darkMode);
         northPanel.add(northImage);
         northPanel.add(northTitle);
     }
 
     private void createMainPanel() {
         mainPanel = new JPanel();
-        mainPanel.setBackground(new Color(0x292929));
+        mainPanel.setBackground(darkMode);
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
         selectLabel = new JLabel("Select one of the following options:");
         selectLabel.setForeground(Color.white);
@@ -143,21 +461,18 @@ public class RegistryMainPanel extends JPanel implements ActionListener {
         addBeast.addActionListener(e -> createAddPanel());
         removeBeast.addActionListener(e -> doRemoveBeast());
         modifyBeast.addActionListener(e -> doModifyBeastDetails());
-        display.addActionListener(e -> doDisplay());
+        display.addActionListener(e -> navigateDetailScreen());
         save.addActionListener(e -> saveRegistry());
         load.addActionListener(e -> loadRegistry());
         quit.addActionListener(e -> System.exit(0));
     }
 
-    private void buttonCustomization() {
-
-    }
 
     //MODIFIES: fullRegistry
     //EFFECTS: add new magical beast to the current registry
     private void createAddPanel() {
         addPanel = new JPanel();
-        addPanel.setBackground(new Color(0x292929));
+        addPanel.setBackground(darkMode);
         add(addPanel, BorderLayout.CENTER);
 
         JLabel beastN = new JLabel("Beast Name:");
@@ -174,21 +489,21 @@ public class RegistryMainPanel extends JPanel implements ActionListener {
 
         JLabel gender = new JLabel("Gender:");
         gender.setForeground(Color.white);
-        gender.setBackground(new Color(0x292929));
+        gender.setBackground(darkMode);
 
         female = new JRadioButton("Female");
         female.setForeground(Color.white);
-        female.setBackground(new Color(0x292929));
+        female.setBackground(darkMode);
         female.addActionListener(this);
 
         male = new JRadioButton("Male");
         male.setForeground(Color.white);
-        male.setBackground(new Color(0x292929));
+        male.setBackground(darkMode);
         male.addActionListener(this);
 
         unknown = new JRadioButton("Unknown");
         unknown.setForeground(Color.white);
-        unknown.setBackground(new Color(0x292929));
+        unknown.setBackground(darkMode);
         unknown.addActionListener(this);
 
         ButtonGroup genderGroup = new ButtonGroup();
@@ -198,7 +513,7 @@ public class RegistryMainPanel extends JPanel implements ActionListener {
 
         JLabel species = new JLabel("Species:");
         species.setForeground(Color.white);
-        speciesDropdown = new JComboBox(speciesList);
+        dropDown = new JComboBox(speciesList);
 
         JButton submit = new JButton("Submit");
 
@@ -211,7 +526,7 @@ public class RegistryMainPanel extends JPanel implements ActionListener {
         addPanel.add(male);
         addPanel.add(unknown);
         addPanel.add(species);
-        addPanel.add(speciesDropdown);
+        addPanel.add(dropDown);
         addPanel.add(submit);
 
         remove(mainPanel);
@@ -219,12 +534,12 @@ public class RegistryMainPanel extends JPanel implements ActionListener {
         repaint();
         revalidate();
 
-        submit.addActionListener(this::submit);
+        submit.addActionListener(this::submitAddBeast);
     }
 
     //MODIFIES: fullRegistry
     //EFFECTS: add new magical beast to the current registry and return to mainPanel
-    private void submit(ActionEvent e) {
+    private void submitAddBeast(ActionEvent e) {
         beastName = beastText.getText();
         beastOwner = ownerText.getText();
         if (female.isSelected()) {
@@ -234,7 +549,7 @@ public class RegistryMainPanel extends JPanel implements ActionListener {
         } else {
             beastGender = "Unknown";
         }
-        beastSpecies = speciesDropdown.getSelectedItem().toString();
+        beastSpecies = dropDown.getSelectedItem().toString();
 
         addToRegistry(createBeast(beastName, beastGender, beastSpecies, beastOwner));
         remove(addPanel);
@@ -243,13 +558,6 @@ public class RegistryMainPanel extends JPanel implements ActionListener {
         revalidate();
     }
 
-    private void userInput() {
-
-    }
-
-    private void createDisplayPanel() {
-        displayPanel = new JPanel();
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == removeBeast) {
