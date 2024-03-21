@@ -294,10 +294,8 @@ public class RegistryMainPanel extends JPanel {
     private String[][] filterData(String option, String name) {
         if (option.equals("Species")) {
             filteredList = fullRegistry.getFilteredMagicalBeastsBySpecies(name);
-            System.out.println(filteredList);
         } else {
             filteredList = fullRegistry.getFilteredMagicalBeastsByOwner(name);
-            System.out.println(filteredList);
         }
         int registrySize = filteredList.size();
         data = new String[registrySize][];
