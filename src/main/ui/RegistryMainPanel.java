@@ -16,6 +16,12 @@ import java.util.List;
 // Citation: https://github.students.cs.ubc.ca/CPSC210/TellerApp
 //           from CPSC 210 - TellerApp
 
+//           Department of Magical Beast Logo from Harry Potter Wiki:
+//                  https://harrypotter.fandom.com/wiki/Department_for_the_Regulation_and_Control_of_Magical_Creatures?
+//                  file=Department_for_the_Regulation_and_Control_of_Magical_Creatures_logo.png
+//
+//          Java GUI: Full Course by Bro Code - https://www.youtube.com/watch?v=Kmgo00avvEw
+
 // Magical Beast Registry application
 public class RegistryMainPanel extends JPanel {
     private static final String JSON_STORE = "./data/registry.json";
