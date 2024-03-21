@@ -1,24 +1,35 @@
 {"beastList": [
     {
-        "beastName": "123",
+        "beastName": "first",
         "offsprings": [],
         "extraNotes": [],
         "siblings": [],
         "gender": "Female",
-        "speciesName": "Ghoul",
-        "ownerName": "qwe",
-        "uniqueId": "55874907-ba08-4aeb-8d24-22ee2522117b",
+        "speciesName": "Flobberworm",
+        "ownerName": "o1",
+        "uniqueId": "9d38031f-4013-4f84-ba53-64500ca0e4db",
         "parents": []
     },
     {
-        "beastName": "890",
+        "beastName": "second",
+        "offsprings": [],
+        "extraNotes": [],
+        "siblings": [],
+        "gender": "Unknown",
+        "speciesName": "Ghoul",
+        "ownerName": "o2",
+        "uniqueId": "156f9801-5c96-4497-bcc6-68d3f328eb45",
+        "parents": []
+    },
+    {
+        "beastName": "third",
         "offsprings": [],
         "extraNotes": [],
         "siblings": [],
         "gender": "Male",
-        "speciesName": "Kneazle",
-        "ownerName": "bnm",
-        "uniqueId": "c165c671-d325-49c3-97bb-ef9996d57cd5",
+        "speciesName": "Quintaped",
+        "ownerName": "o3",
+        "uniqueId": "099d7e8f-6da4-47c1-8230-03fac6d6a1c9",
         "parents": []
     }
 ]}
