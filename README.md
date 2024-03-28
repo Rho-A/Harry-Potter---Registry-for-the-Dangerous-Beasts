@@ -32,6 +32,13 @@ select its gender and its species. Once you are finished, click "Submit" button 
 - You can generate the second required action related to the user story "select and view a list of beasts of a specific 
 species or owner" by clicking "Display & Modify All Beasts" in the main menu. On the left hand side, choose whether to 
 filter by "Species" or "Owner" and type in the name of the species or owner, then click "Submit"
+- You can generate the third required action related to the user story "view the list of beasts in the registry" by
+clicking "Display & Modify All Beasts" in the main menu.
+- You can generate the forth required action related to the user story "select a beast in the list and modify or add 
+new details to that beast" by clicking "Display & Modify All Beasts" in the main menu. Select the beast that you
+wish to modify and click on "Modify Beast Details". On the right-hand side, type in the new beast name, owner name, or 
+extra notes if you wish. If you would like to add new parent, sibling, or offspring, select another beast to add to the
+current beast and choose one of the three options in the dropdown menu.
 - You can locate my visual component in the main menu by opening the application.
 - You can save the state of my application by clicking on "Save" in the main menu
 - You can reload the state of my application by clicking on "Load" in the main menu
