@@ -83,4 +83,15 @@ current beast and choose one of the three options in the dropdown menu.
 - Sat Mar 30 13:55:53 PDT 2024
 - A list filtered by owner's name, no1, is displayed.
 
+# Phase 4: Task 3
+- If I had more time to work on this project, I would refactor the Species class. Currently, the Species
+class is hardcoded with five different species and their associated species warnings and classification in three 
+separate arrayLists. For better usability in the future (such as user adding in new species), I think replacing the 
+three arrayList with one HashSet and a new class for species warning and classification (key: species name, value: 
+new class object that stores species warning and classification).
+- Another refactoring would be adding two abstract classes "Animal" and "AnimalList" if we want to make this program more generalizable. 
+For example, this application could also be used for pets registration. I am thinking of implementing general methods
+that are applicable to any animal (such as name and gender) and have the MagicalBeast extends Animal, and MagicalBeastList
+extends AnimalList.
+
 [comment]:<> (An example of text with **bold** and *italic* fonts.)
