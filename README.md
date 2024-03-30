@@ -89,8 +89,8 @@ class is hardcoded with five different species and their associated species warn
 separate arrayLists. For better usability in the future (such as user adding in new species), I think replacing the 
 three arrayList with one HashSet and a new class for species warning and classification (key: species name, value: 
 new class object that stores species warning and classification).
-- Another refactoring would be adding two abstract classes "Animal" and "AnimalList" if we want to make this program more generalizable. 
-For example, this application could also be used for pets registration. I am thinking of implementing general methods
+- Another refactoring would be adding two abstract classes "Animal" and "AnimalList" if we want to make this program 
+more generalizable. For example, this application could also be used for pets registration. I am thinking of implementing general methods
 that are applicable to any animal (such as name and gender) and have the MagicalBeast extends Animal, and MagicalBeastList
 extends AnimalList.
 
