@@ -20,12 +20,16 @@ public class MagicalBeastList implements Writable {
     //EFFECTS: add a magical beast to the beast list
     public void addMagicalBeast(MagicalBeast beast) {
         this.beastList.add(beast);
+        EventLog.getInstance().logEvent(new Event("Beast " + beast.getBeastName()
+                + " added to the registry."));
     }
 
     //MODIFIES: this
     //EFFECTS: remove a magical beast in the beast list
     public void removeMagicalBeast(MagicalBeast beast) {
         this.beastList.remove(beast);
+        EventLog.getInstance().logEvent(new Event("Beast " + beast.getBeastName()
+                + " removed from the registry."));
     }
 
     //EFFECTS: return true if the beastList is empty, otherwise false
@@ -35,6 +39,7 @@ public class MagicalBeastList implements Writable {
 
     //EFFECTS: return the full list of beastList
     public List<MagicalBeast> getAllMagicalBeasts() {
+        EventLog.getInstance().logEvent(new Event("Displayed the list of beasts from registry."));
         return this.beastList;
     }
 
@@ -62,6 +67,8 @@ public class MagicalBeastList implements Writable {
                 specificSpecies.add(b);
             }
         }
+        EventLog.getInstance().logEvent(new Event("A list filtered by species, " + species
+                + ", is displayed."));
         return specificSpecies;
     }
 
@@ -74,10 +81,10 @@ public class MagicalBeastList implements Writable {
                 specificOwner.add(magicalBeast);
             }
         }
+        EventLog.getInstance().logEvent(new Event("A list filtered by owner's name, "
+                + ownerName + ", is displayed."));
         return specificOwner;
     }
-
-
 
     //EFFECTS: return a list of magical beasts name of the specific beast name
     public List<String> getFilteredMagicalBeastsByName(String name) {
@@ -88,6 +95,8 @@ public class MagicalBeastList implements Writable {
                 specificName.add(b.getBeastName());
             }
         }
+        EventLog.getInstance().logEvent(new Event("A list filtered by Beast's name, " + name
+                + ", is displayed."));
         return specificName;
     }
 
@@ -100,6 +109,8 @@ public class MagicalBeastList implements Writable {
                 specificName.add(b);
             }
         }
+        EventLog.getInstance().logEvent(new Event("A list filtered by Beast's name, " + name
+                + ", is displayed."));
         return specificName;
     }
 

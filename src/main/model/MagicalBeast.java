@@ -82,6 +82,8 @@ public class MagicalBeast implements Writable {
     //MODIFIES: this
     //EFFECTS: rename beast name
     public void setBeastName(String newName) {
+        EventLog.getInstance().logEvent(new Event(this.beastName + "'s name has been changed to "
+                + newName + "."));
         this.beastName = newName;
     }
 
@@ -89,30 +91,39 @@ public class MagicalBeast implements Writable {
     //EFFECTS: change to a new owner
     public void setOwnerName(String newOwner) {
         this.ownerName = newOwner;
+        EventLog.getInstance().logEvent(new Event(this.beastName + "'s owner has been changed to "
+                + newOwner + "."));
     }
 
     //MODIFIES: this
     //EFFECTS: add a magical beast to the parent list
     public void addParents(MagicalBeast id) {
         this.parents.add(id.getBeastName());
+        EventLog.getInstance().logEvent(new Event("A new parent has been assigned."));
     }
 
     //MODIFIES: this
     //EFFECTS: add a magical beast to the siblings list
     public void addSiblings(MagicalBeast id) {
         this.siblings.add(id.getBeastName());
+        EventLog.getInstance().logEvent(new Event("A new sibling has been assigned to "
+                + this.beastName + "."));
     }
 
     //MODIFIES: this
     //EFFECTS: add a magical beast to the offsprings list
     public void addOffsprings(MagicalBeast id) {
         this.offsprings.add(id.getBeastName());
+        EventLog.getInstance().logEvent(new Event("A new offspring has been assigned to "
+                + this.beastName + "."));
     }
 
     //MODIFIES: this
     //EFFECTS: add new notes to the extra note list
     public void addExtraNotes(String newNotes) {
         this.extraNotes.add(newNotes);
+        EventLog.getInstance().logEvent(new Event("A new extra note has been added to "
+                + this.beastName + "."));
     }
 
     //EFFECTS: return the unique id
@@ -137,6 +148,7 @@ public class MagicalBeast implements Writable {
 
     //EFFECTS: return species warning
     public String getSpeciesSpecificWarning() {
+        EventLog.getInstance().logEvent(new Event(this.beastName + "'s details has been displayed."));
         return this.speciesSpecificWarning;
     }
 

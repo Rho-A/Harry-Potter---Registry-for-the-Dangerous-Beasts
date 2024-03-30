@@ -1,5 +1,7 @@
 package ui;
 
+import model.EventLog;
+import model.Event;
 import model.MagicalBeast;
 import model.MagicalBeastList;
 import persistence.JsonReader;
@@ -11,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 // Citation: https://github.students.cs.ubc.ca/CPSC210/TellerApp
@@ -162,7 +165,14 @@ public class RegistryMainPanel extends JPanel {
         display.addActionListener(e -> navigateDetailScreen());
         save.addActionListener(e -> saveRegistry());
         load.addActionListener(e -> loadRegistry());
-        quit.addActionListener(e -> System.exit(0));
+        quit.addActionListener(e -> quitApplication());
+    }
+
+    private void quitApplication() {
+        for (Iterator<Event> it = EventLog.getInstance().iterator(); it.hasNext(); ) {
+            System.out.println(it.next());
+        }
+        System.exit(0);
     }
 
     //EFFECTS: navigate to detail screen displaying all beasts in the registry

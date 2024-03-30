@@ -43,4 +43,44 @@ current beast and choose one of the three options in the dropdown menu.
 - You can save the state of my application by clicking on "Save" in the main menu
 - You can reload the state of my application by clicking on "Load" in the main menu
 
+# Phase 4: Task 2
+- Sat Mar 30 13:55:05 PDT 2024
+- Beast first added to the registry.
+- Sat Mar 30 13:55:05 PDT 2024
+- Beast second added to the registry.
+- Sat Mar 30 13:55:05 PDT 2024
+- Beast third added to the registry.
+- Sat Mar 30 13:55:06 PDT 2024
+- Displayed the list of beasts from registry.
+- Sat Mar 30 13:55:06 PDT 2024
+- Displayed the list of beasts from registry.
+- Sat Mar 30 13:55:10 PDT 2024
+- first's details has been displayed.
+- Sat Mar 30 13:55:12 PDT 2024
+- first's details has been displayed.
+- Sat Mar 30 13:55:27 PDT 2024
+- first's name has been changed to n1.
+- Sat Mar 30 13:55:27 PDT 2024
+- n1's owner has been changed to no1.
+- Sat Mar 30 13:55:27 PDT 2024
+- A new extra note has been added to n1.
+- Sat Mar 30 13:55:27 PDT 2024
+- A new sibling has been assigned to n1.
+- Sat Mar 30 13:55:27 PDT 2024
+- A new sibling has been assigned to third.
+- Sat Mar 30 13:55:27 PDT 2024
+- Displayed the list of beasts from registry.
+- Sat Mar 30 13:55:27 PDT 2024
+- Displayed the list of beasts from registry.
+- Sat Mar 30 13:55:35 PDT 2024
+- Beast second removed from the registry.
+- Sat Mar 30 13:55:35 PDT 2024
+- Displayed the list of beasts from registry.
+- Sat Mar 30 13:55:35 PDT 2024
+- Displayed the list of beasts from registry.
+- Sat Mar 30 13:55:44 PDT 2024
+- A list filtered by species, Flobberworm, is displayed.
+- Sat Mar 30 13:55:53 PDT 2024
+- A list filtered by owner's name, no1, is displayed.
+
 [comment]:<> (An example of text with **bold** and *italic* fonts.)
