@@ -44,6 +44,7 @@ current beast and choose one of the three options in the dropdown menu.
 - You can reload the state of my application by clicking on "Load" in the main menu
 
 # Phase 4: Task 2
+````
 - Sat Mar 30 13:55:05 PDT 2024
 - Beast first added to the registry.
 - Sat Mar 30 13:55:05 PDT 2024
@@ -82,6 +83,7 @@ current beast and choose one of the three options in the dropdown menu.
 - A list filtered by species, Flobberworm, is displayed.
 - Sat Mar 30 13:55:53 PDT 2024
 - A list filtered by owner's name, no1, is displayed.
+````
 
 # Phase 4: Task 3
 - If I had more time to work on this project, I would refactor the Species class. Currently, the Species
