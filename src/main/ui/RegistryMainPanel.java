@@ -288,7 +288,7 @@ public class RegistryMainPanel extends JPanel {
     //EFFECTS: produce an array of magical beasts, each element in the array is an array of beast's details
     private String[][] fullRegistryData() {
         List<MagicalBeast> fullList = fullRegistry.getAllMagicalBeasts();
-        int registrySize = fullRegistry.getAllMagicalBeasts().size();
+        int registrySize = fullList.size();
         data = new String[registrySize][];
         int i = 0;
         for (MagicalBeast b : fullList) {
