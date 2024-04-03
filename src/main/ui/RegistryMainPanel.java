@@ -396,7 +396,7 @@ public class RegistryMainPanel extends JPanel {
 
         addLabel = new JLabel("Add: ");
         addLabel.setForeground(Color.WHITE);
-        String[] selectList = {"parents", "siblings", "offsprings"};
+        String[] selectList = {"", "parents", "siblings", "offsprings"};
         dropDown = new JComboBox(selectList);
         JButton submitModifyButton = new JButton("Submit");
 

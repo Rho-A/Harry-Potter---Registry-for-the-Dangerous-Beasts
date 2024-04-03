@@ -1,35 +1,14 @@
-{"beastList": [
-    {
-        "beastName": "first",
-        "offsprings": [],
-        "extraNotes": [],
-        "siblings": [],
-        "gender": "Female",
-        "speciesName": "Flobberworm",
-        "ownerName": "o1",
-        "uniqueId": "9d38031f-4013-4f84-ba53-64500ca0e4db",
-        "parents": []
-    },
-    {
-        "beastName": "second",
-        "offsprings": [],
-        "extraNotes": [],
-        "siblings": [],
-        "gender": "Unknown",
-        "speciesName": "Ghoul",
-        "ownerName": "o2",
-        "uniqueId": "156f9801-5c96-4497-bcc6-68d3f328eb45",
-        "parents": []
-    },
-    {
-        "beastName": "third",
-        "offsprings": [],
-        "extraNotes": [],
-        "siblings": [],
-        "gender": "Male",
-        "speciesName": "Quintaped",
-        "ownerName": "o3",
-        "uniqueId": "099d7e8f-6da4-47c1-8230-03fac6d6a1c9",
-        "parents": []
-    }
-]}
+{"beastList": [{
+    "beastName": "new name",
+    "offsprings": [
+        "new name",
+        "n2"
+    ],
+    "extraNotes": ["notes"],
+    "siblings": [],
+    "gender": "Female",
+    "speciesName": "Griffin",
+    "ownerName": "new owner",
+    "uniqueId": "4ff56874-50ba-4dbe-9682-2d3eaa2af445",
+    "parents": ["new name"]
+}]}
