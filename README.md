@@ -45,44 +45,46 @@ current beast and choose one of the three options in the dropdown menu.
 
 # Phase 4: Task 2
 ````
-- Sat Mar 30 13:55:05 PDT 2024
-- Beast first added to the registry.
-- Sat Mar 30 13:55:05 PDT 2024
-- Beast second added to the registry.
-- Sat Mar 30 13:55:05 PDT 2024
-- Beast third added to the registry.
-- Sat Mar 30 13:55:06 PDT 2024
-- Displayed the list of beasts from registry.
-- Sat Mar 30 13:55:06 PDT 2024
-- Displayed the list of beasts from registry.
-- Sat Mar 30 13:55:10 PDT 2024
-- first's details has been displayed.
-- Sat Mar 30 13:55:12 PDT 2024
-- first's details has been displayed.
-- Sat Mar 30 13:55:27 PDT 2024
-- first's name has been changed to n1.
-- Sat Mar 30 13:55:27 PDT 2024
-- n1's owner has been changed to no1.
-- Sat Mar 30 13:55:27 PDT 2024
-- A new extra note has been added to n1.
-- Sat Mar 30 13:55:27 PDT 2024
-- A new sibling has been assigned to n1.
-- Sat Mar 30 13:55:27 PDT 2024
-- A new sibling has been assigned to third.
-- Sat Mar 30 13:55:27 PDT 2024
-- Displayed the list of beasts from registry.
-- Sat Mar 30 13:55:27 PDT 2024
-- Displayed the list of beasts from registry.
-- Sat Mar 30 13:55:35 PDT 2024
-- Beast second removed from the registry.
-- Sat Mar 30 13:55:35 PDT 2024
-- Displayed the list of beasts from registry.
-- Sat Mar 30 13:55:35 PDT 2024
-- Displayed the list of beasts from registry.
-- Sat Mar 30 13:55:44 PDT 2024
-- A list filtered by species, Flobberworm, is displayed.
-- Sat Mar 30 13:55:53 PDT 2024
-- A list filtered by owner's name, no1, is displayed.
+Wed Apr 03 13:26:52 PDT 2024
+Beast first added to the registry.
+Wed Apr 03 13:26:52 PDT 2024
+Beast second added to the registry.
+Wed Apr 03 13:26:52 PDT 2024
+Beast third added to the registry.
+Wed Apr 03 13:26:53 PDT 2024
+Displayed the list of beasts from registry.
+Wed Apr 03 13:26:59 PDT 2024
+A list filtered by species, Ghoul, is displayed.
+Wed Apr 03 13:27:01 PDT 2024
+second's details has been displayed.
+Wed Apr 03 13:27:03 PDT 2024
+second's details has been displayed.
+Wed Apr 03 13:27:11 PDT 2024
+second's name has been changed to n1.
+Wed Apr 03 13:27:11 PDT 2024
+n1's owner has been changed to o1.
+Wed Apr 03 13:27:11 PDT 2024
+A new extra note has been added to n1.
+Wed Apr 03 13:27:11 PDT 2024
+A new parent has been assigned.
+Wed Apr 03 13:27:11 PDT 2024
+A new offspring has been assigned to n1.
+Wed Apr 03 13:27:11 PDT 2024
+Displayed the list of beasts from registry.
+Wed Apr 03 13:27:15 PDT 2024
+third's details has been displayed.
+Wed Apr 03 13:27:19 PDT 2024
+A new sibling has been assigned to third.
+Wed Apr 03 13:27:19 PDT 2024
+A new sibling has been assigned to n1.
+Wed Apr 03 13:27:19 PDT 2024
+Displayed the list of beasts from registry.
+Wed Apr 03 13:27:23 PDT 2024
+third's details has been displayed.
+Wed Apr 03 13:27:28 PDT 2024
+Beast third removed from the registry.
+Wed Apr 03 13:27:28 PDT 2024
+Displayed the list of beasts from registry.
 ````
 
 # Phase 4: Task 3
