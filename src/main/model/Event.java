@@ -3,8 +3,6 @@ package model;
 import java.util.Calendar;
 import java.util.Date;
 
-// Citation: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
-//              From CPSC 210: AlarmSystem
 
 /**
  * Represents a Magical Beast event.

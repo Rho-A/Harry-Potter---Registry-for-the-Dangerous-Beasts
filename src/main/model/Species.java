@@ -26,7 +26,8 @@ public class Species {
                 "Ghoul",
                 "Kneazle",
                 "Griffin",
-                "Quintaped")
+                "Quintaped",
+                "Niffler")
         );
 
         int index = 0;
@@ -46,7 +47,8 @@ public class Species {
                 null,
                 "Highly intelligent",
                 "Capable of Flight",
-                "Carnivorous, taste for human flesh[2]" + "\n" + "Extremely dangerous and hostile towards humans")
+                "Carnivorous, taste for human flesh[2]" + "\n" + "Extremely dangerous and hostile towards humans",
+                "Attracted to shiny objects and metals")
         );
 
         return warningList.get(index);
@@ -54,7 +56,7 @@ public class Species {
 
     //EFFECTS: return the classification at the index position in the classification list
     private int getSpeciesClassification(int index) {
-        ArrayList<Integer> classificationList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        ArrayList<Integer> classificationList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 3));
 
         return classificationList.get(index);
     }

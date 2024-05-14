@@ -5,9 +5,6 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-//Citation: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
-//          from CPSC 210 - JsonSerializationDemo
-
 // A writer that writes JSON representation of Registry to file
 public class JsonWriter {
     private static final int TAB = 4;

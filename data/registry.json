@@ -1,14 +1,11 @@
 {"beastList": [{
-    "beastName": "new name",
-    "offsprings": [
-        "new name",
-        "n2"
-    ],
-    "extraNotes": ["notes"],
-    "siblings": [],
+    "beastName": "n1",
+    "offsprings": [],
+    "extraNotes": [],
+    "siblings": ["new name"],
     "gender": "Female",
-    "speciesName": "Griffin",
-    "ownerName": "new owner",
-    "uniqueId": "4ff56874-50ba-4dbe-9682-2d3eaa2af445",
-    "parents": ["new name"]
+    "speciesName": "Flobberworm",
+    "ownerName": "o1",
+    "uniqueId": "f996b80c-e8f9-4c64-9fa4-07e463796583",
+    "parents": []
 }]}

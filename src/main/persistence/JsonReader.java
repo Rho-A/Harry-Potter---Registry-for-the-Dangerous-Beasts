@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-//Citation: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
-//          from CPSC 210 - JsonSerializationDemo
-
 // A reader that reads registry from JSON data stored in file
 public class JsonReader {
     private String source;

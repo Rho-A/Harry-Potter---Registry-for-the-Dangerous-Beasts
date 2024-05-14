@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-// Citation: https://github.students.cs.ubc.ca/CPSC210/AlarmSystem
-//              From CPSC 210: AlarmSystem
 
 /**
  * Represents a log of Magical Beast events.
